@@ -1,0 +1,84 @@
+/* Auth-page specific refinements */
+
+body {
+    background: #fff;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-card .btn-google,
+.auth-card .btn-primary {
+    width: 100%;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 24px 0 8px;
+    width: 100%;
+}
+
+.otp-input {
+    flex: 1;
+    height: 55px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    min-width: 40px;
+}
+
+.otp-input:focus {
+    border-color: #5a32fa;
+}
+
+@media (max-width: 768px) {
+    .login-wrapper {
+        max-width: 100%;
+    }
+
+    .auth-card {
+        padding: 24px 18px;
+    }
+
+    .otp-container {
+        gap: 6px;
+    }
+
+    .otp-input {
+        height: 46px;
+        min-width: 32px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .otp-container {
+        gap: 4px;
+    }
+
+    .otp-input {
+        height: 42px;
+        min-width: 28px;
+        font-size: 18px;
+    }
+}

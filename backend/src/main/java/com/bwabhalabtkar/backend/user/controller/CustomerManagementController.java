@@ -1,0 +1,46 @@
+package com.bwabhalabtkar.backend.user.controller;
+
+
+import com.bwabhalabtkar.backend.user.dto.CustomerResponse;
+import com.bwabhalabtkar.backend.user.dto.CustomerUpdateRequest;
+import com.bwabhalabtkar.backend.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/customer/management")
+@PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN', 'ROLE_ADMIN')")
+public class CustomerManagementController
+{
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping
+    public ResponseEntity<List<CustomerResponse>> getCustomers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerResponse> updateCustomer(
+            @PathVariable Long id,
+            @RequestBody CustomerUpdateRequest request) {
+
+
+
+        return ResponseEntity.ok(userService.updateUser(id, request));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deactivateCustomer(@PathVariable Long id) {
+
+        userService.deactivateUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+}

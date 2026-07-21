@@ -1,0 +1,39 @@
+﻿/*!
+
+=========================================================
+* Clothify Admin Dashboard
+=========================================================
+
+* Project Page: Clothify Admin Dashboard
+* Copyright 2026 Clothify
+
+* Coded by Clothify
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+// {{ site.product.name }} Core styling components
+
+@import "theme";
+
+// Mixin
+@import "mixins/mixins";
+
+// PRO Components
+@import "accordion";
+@import "backgrounds";
+@import "cards-extend";
+@import "components";
+@import "dropdown-extend";
+@import "floating-elements";
+@import "list-check";
+@import "misc-extend";
+@import "rtl-extend";
+
+// Plugins
+@import "plugins/pro/plugins-extend";
+
+
