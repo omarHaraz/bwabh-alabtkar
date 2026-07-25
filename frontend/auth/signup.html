@@ -3,76 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up | bwabhalabtkar</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Create Account | bwabhalabtkar</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <main class="auth-page">
-        <div class="login-wrapper">
-            <div class="logo-container">
-                <div class="logo">bwabhalabtkar</div>
+
+<main class="auth-page">
+    <section class="login-wrapper">
+
+        <!-- ========================= -->
+        <!-- Signup Card -->
+        <!-- ========================= -->
+
+        <div id="signupFormContainer" class="auth-card">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Join us and get started today.
+            </p>
+
+            <button class="btn-google" type="button">
+                <i class="fa-brands fa-google"></i>
+                Continue with Google
+            </button>
+
+            <div class="divider">
+                <span>or</span>
             </div>
 
-            <div id="signupFormContainer" class="auth-card">
-                <h2>Create account</h2>
-                <p class="subtitle">Join us and get started today.</p>
+            <form id="signupForm" novalidate>
 
-                <button class="btn-google">Continue with Google</button>
-                <div class="divider"><span>or</span></div>
+                <div
+                    class="form-error"
+                    id="formError"
+                    role="alert"
+                    hidden>
+                </div>
 
-                <form id="signupForm" novalidate>
-                <div class="form-error" id="formError" role="alert" hidden></div>
+                <!-- Name -->
+
                 <div class="form-field">
+
                     <div class="input-container">
-                        <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Full Name"
+                            required>
+
                     </div>
-                    <span class="field-error" id="nameError"></span>
+
+                    <span
+                        class="field-error"
+                        id="nameError">
+                    </span>
+
                 </div>
+
+                <!-- Email -->
+
                 <div class="form-field">
+
                     <div class="input-container">
-                        <input type="email" id="email" name="email" placeholder="Email" required>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Email"
+                            required>
+
                     </div>
-                    <span class="field-error" id="emailError"></span>
+
+                    <span
+                        class="field-error"
+                        id="emailError">
+                    </span>
+
                 </div>
+
+                <!-- Password -->
+
                 <div class="form-field">
-                    <div class="input-container">
-                        <input type="password" placeholder="Password" id="password" name="password" required>
-                        <button type="button" class="toggle-password" onclick="togglePassword()" aria-label="Show password">👁</button>
+
+                    <div class="input-container password-container">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            onclick="togglePassword()"
+                            aria-label="Toggle Password">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
                     </div>
-                    <span class="field-error" id="passwordError"></span>
+
+                    <span
+                        class="field-error"
+                        id="passwordError">
+                    </span>
+
                 </div>
 
                 <div class="form-options">
+
                     <label class="checkbox-container">
-                        <input type="checkbox"> Email me with news and offers
+
+                        <input type="checkbox">
+
+                        <span>Email me with news and offers</span>
+
                     </label>
+
                 </div>
 
-                <button type="submit" class="btn-primary">Sign up</button>
+                <button
+                    type="submit"
+                    class="btn-primary">
+
+                    Create Account
+
+                </button>
+
             </form>
-            <p class="signup-text">Already have an account? <a href="login.html">Sign in</a></p>
+
+            <p class="signup-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Sign In
+                </a>
+
+            </p>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- OTP Card -->
+        <!-- ========================= -->
+
+        <div
+            id="otpSection"
+            class="auth-card"
+            style="display:none;">
+
+            <h2>Email Verification</h2>
+
+            <p class="subtitle">
+
+                We sent a verification code to
+
+            </p>
+
+            <strong id="displayEmail"></strong>
+
+            <div class="otp-container">
+
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+
+                <input class="otp-input" maxlength="1" inputmode="numeric">
+
             </div>
 
-            <div id="otpSection" class="auth-card" style="display: none;">
-                <h2>Enter code</h2>
-                <p class="subtitle">Sent to <span id="displayEmail"></span> <a href="#" onclick="showSignup()">Change</a></p>
-                
-                <div class="otp-container">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                    <input type="text" maxlength="1" class="otp-input">
-                </div>
-                <span class="field-error" id="otpError"></span>
-                <button type="button" onclick="verifyOtp()" class="btn-primary" style="margin-top: 20px;">Verify</button>
-            </div>
+            <span
+                class="field-error"
+                id="otpError">
+            </span>
+
+            <button
+                class="btn-primary"
+                type="button"
+                onclick="verifyOtp()">
+
+                Verify Email
+
+            </button>
+
+            <button
+                id="resendBtn"
+                class="btn-secondary"
+                type="button">
+
+                Resend OTP
+
+            </button>
+
+            <p class="signup-text">
+
+                Wrong email?
+
+                <a
+                    href="#"
+                    onclick="showSignup(); return false;">
+
+                    Change email
+
+                </a>
+
+            </p>
+
         </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/signup.js"></script>
+
+    </section>
+</main>
+
+<script type="module" src="js/signup.js"></script>
+
 </body>
 </html>

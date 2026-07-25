@@ -1,20 +1,228 @@
-<header class="navbar">
+<header class="navbar" dir="ltr">
 
-    <div class="logo">
-        <img src="../assets/images/logo.png" alt="Logo">
+    <!-- =========================
+            LOGO
+    ========================== -->
+    <div class="nav-left">
+
+        <a href="/customer/pages/home.html" class="logo-container">
+            <img
+            src="/customer/assets/images/logo-icon.png"
+            alt="Innovation Hub"
+            class="logo-icon">
+
+            <div class="logo-text">
+
+                <span class="logo-text-ar">
+                    بوابة الإبتكار
+                </span>
+
+                <span class="logo-text-en">
+                    Innovation Hub
+                </span>
+
+            </div>
+
+        </a>
+
     </div>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="home.html">الرئيسية</a></li>
-            <li><a href="#">الدخول للكورسات</a></li>
-            <li><a href="#">مجتمع الاعضاء</a></li>
-            <li><a href="#">حجز استشارة خاصة</a></li>
-            <li><a href="#">الكورسات و الكتب</a></li>
-        </ul>
-    </nav>
 
-    <!-- Login/Profile -->
-    <div id="auth-section"></div>
+    <!-- =========================
+            RIGHT SIDE
+    ========================== -->
+    <div class="nav-right">
+
+        <!-- Navigation -->
+        <nav class="main-navigation" dir="rtl">
+
+            <ul class="nav-links">
+
+                <!-- Products -->
+                <li class="dropdown">
+
+                    <a href="/customer/pages/products/products.html">
+                        المنتجات
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a href="/customer/pages/products/idea-management/idea-management.html">
+                                إدارة الأفكار
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/customer/pages/products/whiteboard/whiteboard.html">
+                                التعاون المرئي
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/customer/pages/products/ai-analysis/ai-analysis.html">
+                                تحليلات الذكاء الاصطناعي
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- Solutions -->
+                <li class="dropdown">
+
+                    <a href="/customer/pages/solutions/solutions.html">
+                        الحلول
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li><a href="/customer/pages/solutions/solutions.html#enterprise">المؤسسات</a></li>
+
+                        <li><a href="/customer/pages/solutions/solutions.html#government">القطاع الحكومي</a></li>
+
+                        <li><a href="/customer/pages/solutions/solutions.html#education">التعليم</a></li>
+
+                        <li><a href="/customer/pages/solutions/solutions.html#healthcare">الرعاية الصحية</a></li>
+
+
+                    </ul>
+
+                </li>
+
+
+
+                <!-- =====================================
+                        RESOURCES (MEGA MENU)
+                ====================================== -->
+
+                <li class="dropdown mega-dropdown">
+
+                    <a href="#">
+                        المصادر
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+
+
+                    <div class="mega-menu">
+
+                        <!-- Column 1 -->
+                        <div class="mega-column">
+
+                            <h4>
+                                <i class="fa-solid fa-lightbulb"></i>
+                                لماذا Innovation Hub؟
+                            </h4>
+
+                            <a href="#">
+                                الجوائز والتقييمات
+                            </a>
+
+                            <a href="#">
+                                دراسات الحالة
+                            </a>
+
+                            <a href="#">
+                                لماذا تختار Innovation Hub؟
+                            </a>
+
+                        </div>
+
+
+                        <!-- Column 2 -->
+                        <div class="mega-column">
+
+                            <h4>
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                التعلم
+                            </h4>
+
+                            <a href="#">
+                                المدونة
+                            </a>
+
+                            <a href="#">
+                                الاختبارات
+                            </a>
+
+                            <a href="#">
+                                دورات الابتكار
+                            </a>
+
+                        </div>
+
+
+
+                        <!-- Column 3 -->
+                        <div class="mega-column">
+
+                            <h4>
+                                <i class="fa-solid fa-book-open"></i>
+                                مكتبة المصادر
+                            </h4>
+
+                            <a href="#">
+                                الفعاليات
+                            </a>
+
+                            <a href="#">
+                                الأوراق البيضاء والمصادر
+                            </a>
+
+                            <a href="#">
+                                الحملات العامة
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+
+        <!-- Contact Sales -->
+        <a href="#" class="btn-sales">
+
+            تواصل مع المبيعات
+
+        </a>
+
+
+        <!-- Demo -->
+        <a href="#" class="btn-demo">
+
+            احصل على عرض تجريبي
+
+        </a>
+
+
+
+        <!-- Authentication -->
+        <div id="auth-section" class="auth-buttons">
+
+            <a href="/auth/login.html" class="login-btn">
+
+                Login
+
+            </a>
+
+            <a href="/auth/signup.html" class="signup-btn">
+
+                Sign Up
+
+            </a>
+
+        </div>
+
+    </div>
 
 </header>

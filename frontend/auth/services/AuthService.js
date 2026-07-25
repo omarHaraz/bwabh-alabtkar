@@ -4,6 +4,10 @@ const API_URL = "http://localhost:8080/api/auth/";
 
 class AuthService {
 
+    // ==========================
+    // Authentication
+    // ==========================
+
     async login(email, password) {
 
         const response = await axios.post(API_URL + "login", {
@@ -22,8 +26,57 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
+    // ==========================
+    // Signup
+    // ==========================
+
+    async requestOtp(signupData) {
+
+        const response = await axios.post(
+            API_URL + "request-otp",
+            signupData
+        );
+
+        return response.data;
+    }
+
+    async verifyOtp(email, code) {
+
+        const response = await axios.post(
+            API_URL + "verify-otp",
+            {
+                email,
+                code
+            }
+        );
+
+        if (response.data.token) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+        }
+
+        return response.data;
+    }
+
+    async resendOtp(email) {
+
+        const response = await axios.post(
+            API_URL + "resend-otp",
+            {
+                email
+            }
+        );
+
+        return response.data;
+    }
+
+    // ==========================
+    // User
+    // ==========================
+
     getCurrentUser() {
+
         const user = localStorage.getItem("user");
+
         return user ? JSON.parse(user) : null;
     }
 
@@ -37,8 +90,8 @@ class AuthService {
 
         return token
             ? {
-                Authorization: `Bearer ${token}`
-            }
+                  Authorization: `Bearer ${token}`
+              }
             : {};
     }
 
@@ -46,13 +99,13 @@ class AuthService {
         return this.getToken() !== null;
     }
 
-    // NEW
     async validateSession() {
 
         const token = this.getToken();
 
-        if (!token)
+        if (!token) {
             return null;
+        }
 
         try {
 

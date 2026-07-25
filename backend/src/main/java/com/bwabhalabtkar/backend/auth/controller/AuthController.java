@@ -167,6 +167,45 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/resend-otp")
+    public ResponseEntity<?> resendOtp(@RequestBody ResendOtpRequest request) {
+
+        try {
+
+            PendingSignup signup = otpService.getPendingSignup(request.getEmail());
+
+            if (signup == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Signup session expired. Please register again.");
+            }
+
+            String newOtp = String.format("%06d",
+                    new SecureRandom().nextInt(1_000_000));
+
+            signup.setOtp(newOtp);
+
+            // Save again (updates Redis and resets expiration)
+            otpService.savePendingSignup(signup);
+
+            emailService.sendHtmlEmail(
+                    signup.getEmail(),
+                    "Your StyleSphere Verification Code",
+                    newOtp
+            );
+
+            return ResponseEntity.ok("OTP resent successfully.");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to resend OTP.");
+        }
+    }
+
+
+
 
     @GetMapping("/me")
     public ResponseEntity<?> me(Authentication authentication) {

@@ -1,153 +1,311 @@
-const API_URL = 'http://localhost:8080/api/auth/';
+import AuthService from "../services/AuthService.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const formError = document.getElementById('formError');
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const passwordError = document.getElementById('passwordError');
-    const otpError = document.getElementById('otpError');
+document.addEventListener("DOMContentLoaded", () => {
 
-    const setFieldError = (field, message) => {
+    // ============================
+    // Elements
+    // ============================
+
+    const signupForm = document.getElementById("signupForm");
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    const formError = document.getElementById("formError");
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const otpError = document.getElementById("otpError");
+
+    const otpInputs = document.querySelectorAll(".otp-input");
+
+    const resendBtn = document.getElementById("resendBtn");
+
+    // ============================
+    // State
+    // ============================
+
+    let signupEmail = "";
+    let resendTimer = null;
+
+    // ============================
+    // Helpers
+    // ============================
+
+    function setFieldError(field, message) {
         field.textContent = message;
-    };
+    }
 
-    const clearErrors = () => {
+    function clearErrors() {
+
         formError.hidden = true;
-        formError.textContent = '';
-        setFieldError(nameError, '');
-        setFieldError(emailError, '');
-        setFieldError(passwordError, '');
-        setFieldError(otpError, '');
-    };
+        formError.textContent = "";
 
-    const validateForm = () => {
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-        let isValid = true;
+        setFieldError(nameError, "");
+        setFieldError(emailError, "");
+        setFieldError(passwordError, "");
+        setFieldError(otpError, "");
+    }
 
-        if (!name) {
-            setFieldError(nameError, 'Full name is required.');
-            isValid = false;
+    function validateForm() {
+
+        clearErrors();
+
+        let valid = true;
+
+        if (!nameInput.value.trim()) {
+            setFieldError(nameError, "Full name is required.");
+            valid = false;
         }
+
+        const email = emailInput.value.trim();
 
         if (!email) {
-            setFieldError(emailError, 'Email is required.');
-            isValid = false;
+            setFieldError(emailError, "Email is required.");
+            valid = false;
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            setFieldError(emailError, 'Please enter a valid email address.');
-            isValid = false;
+            setFieldError(emailError, "Invalid email address.");
+            valid = false;
         }
+
+        const password = passwordInput.value;
 
         if (!password) {
-            setFieldError(passwordError, 'Password is required.');
-            isValid = false;
+            setFieldError(passwordError, "Password is required.");
+            valid = false;
         } else if (password.length < 6) {
-            setFieldError(passwordError, 'Password must be at least 6 characters.');
-            isValid = false;
+            setFieldError(passwordError, "Password must be at least 6 characters.");
+            valid = false;
         }
 
-        return isValid;
-    };
+        return valid;
+    }
 
+    // ============================
+    // Views
+    // ============================
+
+    function showOtpView(email) {
+
+        signupEmail = email;
+
+        document.getElementById("signupFormContainer").style.display = "none";
+        document.getElementById("otpSection").style.display = "block";
+
+        document.getElementById("displayEmail").textContent = email;
+
+        otpInputs.forEach(input => input.value = "");
+
+        otpInputs[0].focus();
+
+        startResendTimer();
+    }
+
+    function showSignupView() {
+
+        document.getElementById("signupFormContainer").style.display = "block";
+        document.getElementById("otpSection").style.display = "none";
+
+        clearErrors();
+    }
+
+    // Make accessible from HTML
+    window.showSignup = showSignupView;
+
+    // ============================
     // Password Toggle
+    // ============================
+
     window.togglePassword = function () {
-        const pw = document.getElementById('password');
-        pw.type = pw.type === 'password' ? 'text' : 'password';
+
+        passwordInput.type =
+            passwordInput.type === "password"
+                ? "text"
+                : "password";
     };
 
-    // Switch to OTP view
-    window.showOtpView = function (email) {
-        document.getElementById('signupFormContainer').style.display = 'none';
-        document.getElementById('otpSection').style.display = 'block';
-        document.getElementById('displayEmail').innerText = email;
-        clearErrors();
-    };
+    // ============================
+    // OTP Inputs
+    // ============================
 
-    // Switch back to Signup
-    window.showSignup = function () {
-        document.getElementById('signupFormContainer').style.display = 'block';
-        document.getElementById('otpSection').style.display = 'none';
-        clearErrors();
-    };
+    otpInputs.forEach((input, index) => {
 
-    // OTP Input Logic
-    const inputs = document.querySelectorAll('.otp-input');
+        input.addEventListener("input", () => {
 
-    inputs.forEach((input, index) => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/[^0-9]/g, '');
+            input.value = input.value.replace(/\D/g, "");
 
-            if (input.value.length === 1 && index < inputs.length - 1) {
-                inputs[index + 1].focus();
+            if (input.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
             }
         });
+
+        input.addEventListener("keydown", (e) => {
+
+            if (
+                e.key === "Backspace" &&
+                input.value === "" &&
+                index > 0
+            ) {
+                otpInputs[index - 1].focus();
+            }
+        });
+
     });
 
-    [nameInput, emailInput, passwordInput].forEach((input) => {
-        input.addEventListener('input', clearErrors);
-    });
+    // ============================
+    // Signup
+    // ============================
 
-    // Signup Form
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    signupForm.addEventListener("submit", async (e) => {
+
         e.preventDefault();
-        clearErrors();
 
         if (!validateForm()) {
             return;
         }
 
         const signupData = {
+
             name: nameInput.value.trim(),
             email: emailInput.value.trim(),
             password: passwordInput.value
+
         };
 
-        await requestOtp(signupData);
+        try {
+
+            await AuthService.requestOtp(signupData);
+
+            showOtpView(signupData.email);
+
+        } catch (error) {
+
+            formError.hidden = false;
+
+            formError.textContent =
+                error.response?.data ||
+                "Failed to send verification code.";
+
+        }
+
     });
 
+    // ============================
     // Verify OTP
+    // ============================
+
     window.verifyOtp = async function () {
-        const email = document.getElementById('displayEmail').innerText;
-        const code = Array.from(inputs)
+
+        const code = Array.from(otpInputs)
             .map(input => input.value)
-            .join('');
+            .join("");
 
         if (code.length !== 6) {
-            setFieldError(otpError, 'Please enter the full 6-digit code.');
+
+            setFieldError(
+                otpError,
+                "Please enter the 6-digit verification code."
+            );
+
             return;
         }
 
         try {
-            const response = await axios.post(
-                API_URL + 'verify-otp',
-                {
-                    email: email,
-                    code: code
-                }
+
+            await AuthService.verifyOtp(signupEmail, code);
+
+            window.location.href = "/customer/pages/home.html";
+
+        } catch (error) {
+
+            setFieldError(
+                otpError,
+                error.response?.data || "Verification failed."
             );
 
-            localStorage.setItem('jwtToken', response.data.token);
-            window.location.href = 'index.html';
-        } catch (error) {
-            setFieldError(otpError, error.response?.data || 'Verification failed.');
         }
+
     };
 
-    async function requestOtp(signupData) {
+    // ============================
+    // Resend OTP
+    // ============================
+
+    window.resendOtp = async function () {
+
         try {
-            await axios.post(
-                API_URL + 'request-otp',
-                signupData
+
+            await AuthService.resendOtp(signupEmail);
+
+            otpInputs.forEach(input => input.value = "");
+
+            otpInputs[0].focus();
+
+            setFieldError(
+                otpError,
+                "A new verification code has been sent."
             );
 
-            showOtpView(signupData.email);
+            startResendTimer();
+
         } catch (error) {
-            formError.hidden = false;
-            formError.textContent = error.response?.data || 'Failed to send verification code.';
+
+            setFieldError(
+                otpError,
+                error.response?.data || "Unable to resend code."
+            );
+
         }
+
+    };
+
+    // ============================
+    // Resend Timer
+    // ============================
+
+    function startResendTimer() {
+
+        if (!resendBtn) return;
+
+        clearInterval(resendTimer);
+
+        let seconds = 60;
+
+        resendBtn.disabled = true;
+
+        resendBtn.textContent = `Resend in ${seconds}s`;
+
+        resendTimer = setInterval(() => {
+
+            seconds--;
+
+            resendBtn.textContent = `Resend in ${seconds}s`;
+
+            if (seconds <= 0) {
+
+                clearInterval(resendTimer);
+
+                resendBtn.disabled = false;
+
+                resendBtn.textContent = "Resend OTP";
+
+            }
+
+        }, 1000);
+
     }
+
+    // ============================
+    // Events
+    // ============================
+
+    if (resendBtn) {
+        resendBtn.addEventListener("click", window.resendOtp);
+    }
+
+    [nameInput, emailInput, passwordInput].forEach(input => {
+        input.addEventListener("input", clearErrors);
+    });
+
 });

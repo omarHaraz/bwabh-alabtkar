@@ -50,11 +50,11 @@ loginForm.addEventListener('submit', async (e) => {
         return;
     }
 
-    const username = emailInput.value.trim();
+    const email = emailInput.value.trim();
     const password = passwordInput.value;
 
     try {
-            const user = await AuthService.login(username, password);
+            const user = await AuthService.login(email, password);
             const payload = JSON.parse(atob(user.token.split('.')[1]));
             const roles = payload.roles || [];
           
