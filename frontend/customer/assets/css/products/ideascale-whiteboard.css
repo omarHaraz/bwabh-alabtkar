@@ -1,0 +1,359 @@
+/*=====================================
+        Whiteboard Hero
+=====================================*/
+
+.whiteboard-hero{
+
+    min-height:500px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#e9ecf5;
+
+}
+
+.whiteboard-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at left center,
+            rgba(255,220,235,.45) 0%,
+            rgba(255,220,235,.20) 20%,
+            rgba(255,220,235,.08) 35%,
+            transparent 60%
+        );
+
+    pointer-events:none;
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:760px;
+
+    padding:20px;
+
+}
+
+.hero-subtitle{
+
+    display:block;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    color:#4b5563;
+
+    margin-bottom:18px;
+
+}
+
+.hero-content h1{
+
+    font-size:3.8rem;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+    line-height:1.2;
+
+    margin-bottom:24px;
+
+}
+
+.hero-content h1 span{
+
+    color:#ff5a2f;
+
+}
+
+.hero-content p{
+
+    max-width:650px;
+
+    margin:0 auto 40px;
+
+    font-size:1.2rem;
+
+    line-height:1.9;
+
+    color:#6b7280;
+
+}
+
+.hero-btn{
+
+    display:inline-block;
+
+    padding:16px 42px;
+
+    background:#ff5a2f;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:0 12px 30px rgba(255,90,47,.25);
+
+}
+
+.hero-btn:hover{
+
+    background:#e84d24;
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+        Whiteboard Features
+=====================================*/
+
+.whiteboard-features{
+
+    padding:100px 0;
+
+    background:#fff;
+
+}
+
+.whiteboard-features .container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:0 20px;
+
+}
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:80px;
+
+}
+
+.section-header h2{
+
+    font-size:2.7rem;
+
+    color:#1f2937;
+
+    margin-bottom:18px;
+
+    font-weight:700;
+
+}
+
+.section-header p{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:#6b7280;
+
+    font-size:1.05rem;
+
+    line-height:1.9;
+
+}
+
+.feature-row{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:70px;
+
+    margin-bottom:100px;
+
+}
+
+.feature-row.reverse{
+
+    flex-direction:row-reverse;
+
+}
+
+.feature-content{
+
+    flex:1;
+
+}
+
+.feature-label{
+
+    display:inline-block;
+
+    color:#3E4CC9;
+
+    font-weight:700;
+
+    font-size:.9rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    margin-bottom:18px;
+
+}
+
+.feature-content h3{
+
+    font-size:2.2rem;
+
+    color:#1f2937;
+
+    line-height:1.4;
+
+    margin-bottom:22px;
+
+    font-weight:700;
+
+}
+
+.feature-content p{
+
+    color:#6b7280;
+
+    font-size:1.05rem;
+
+    line-height:2;
+
+}
+
+.feature-image{
+
+    flex:1;
+
+}
+
+.feature-image img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:18px;
+
+    box-shadow:0 20px 45px rgba(15,23,42,.08);
+
+    transition:.35s;
+
+}
+
+.feature-image img:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 28px 60px rgba(15,23,42,.12);
+
+}
+
+/*=====================================
+            Responsive
+=====================================*/
+
+@media(max-width:992px){
+
+    .feature-row,
+    .feature-row.reverse{
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:40px;
+
+    }
+
+    .feature-content{
+
+        order:2;
+
+    }
+
+    .feature-image{
+
+        order:1;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .whiteboard-hero{
+
+        min-height:420px;
+
+        padding:80px 20px;
+
+    }
+
+    .hero-content h1{
+
+        font-size:2.6rem;
+
+    }
+
+    .hero-content p{
+
+        font-size:1rem;
+
+    }
+
+    .section-header h2{
+
+        font-size:2rem;
+
+    }
+
+    .feature-content h3{
+
+        font-size:1.7rem;
+
+    }
+
+    .feature-content p{
+
+        font-size:1rem;
+
+    }
+
+}

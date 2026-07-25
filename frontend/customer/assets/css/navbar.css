@@ -1,70 +1,57 @@
-.navbar{
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+/* navbar.css
+   Ready-to-use navbar stylesheet.
+   Replace with your project colors as needed.
+*/
 
-    padding:20px 40px;
-
-    background:white;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-
-}
-
-.logo img{
-
-    height:90px;
-    width: 400;
-
-}
-
-.nav-links{
-
-    display:flex;
-    list-style:none;
-    gap:35px;
-
-}
-
-.nav-links a{
-
-    text-decoration:none;
-    color:black;
-    font-size: 2rem;
-
-}
-
-.auth-buttons{
-
-    display:flex;
-    gap:15px;
-    align-items:center;
-
-}
-
-.login-btn {
-    padding: 12px 25px;
-    background: #f2f2f2;
-    border-radius: 10px;
-    text-decoration: none;
-    color: black;
-    font-size: 2rem;
-}
-
-.signup-btn {
-    text-decoration: none;
-    color: black;
-    font-size: 2rem;
-}
-
-.profile-img{
-
-    width: 100px;
-    height: 100px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Poppins',sans-serif}
+body{background:#f8fafc}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:12px 50px;background:#fff;border-bottom:1px solid #e5e7eb;box-shadow:0 2px 10px rgba(0,0,0,.06);position:relative;z-index:1000}
+.nav-left,.nav-right{display:flex;align-items:center}
+.nav-right{gap:18px}
+.logo-container{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:70px;height:auto}
+.logo-text{display:flex;flex-direction:column}
+.logo-text-ar{font-size:22px;font-weight:700;color:#0052CC}
+.logo-text-en{font-size:14px;font-weight:600;color:#0F62FE}
+.main-navigation{direction:rtl}
+.nav-links{list-style:none;display:flex;gap:30px;align-items:center}
+.nav-links>li{position:relative;padding-bottom:16px}
+.nav-links>li>a{text-decoration:none;color:#1f2937;font-weight:600;display:flex;align-items:center;gap:8px}
+.nav-links>li>a:hover{color:#0F62FE}
+.dropdown-menu{
+position:absolute;top:100%;right:0;min-width:230px;background:#fff;border:1px solid #ececec;border-radius:10px;
+box-shadow:0 12px 30px rgba(0,0,0,.12);list-style:none;
+opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;
+transition:.25s;z-index:9999}
+.dropdown:hover>.dropdown-menu,.dropdown-menu:hover{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.dropdown-menu a{display:block;padding:14px 18px;color:#444;text-decoration:none}
+.dropdown-menu a:hover{background:#f5f7fb;color:#0F62FE}
+.mega-dropdown{position:relative}
+.mega-menu{
+position:absolute;top:100%;right:-280px;width:900px;background:#fff;border:1px solid #ececec;border-radius:12px;
+box-shadow:0 18px 40px rgba(0,0,0,.15);padding:35px;display:grid;grid-template-columns:repeat(3,1fr);gap:35px;
+opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;transition:.25s;z-index:9999}
+.mega-dropdown:hover>.mega-menu,.mega-menu:hover{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+.mega-column{display:flex;flex-direction:column}
+.mega-column h4{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:18px}
+.mega-column h4 i{color:#0F62FE}
+.mega-column a{text-decoration:none;color:#555;padding:10px 0;transition:.2s}
+.mega-column a:hover{color:#0F62FE;padding-right:8px}
+.mega-column:not(:last-child){border-left:1px solid #ececec;padding-left:30px}
+.btn-sales,.login-btn,.signup-btn,.btn-demo{text-decoration:none;border-radius:8px;font-weight:600;transition:.25s}
+.btn-sales{border:2px solid #0F62FE;color:#0F62FE;padding:10px 18px}
+.btn-sales:hover{background:#0F62FE;color:#fff}
+.btn-demo{background:#ff7b00;color:#fff;padding:10px 20px}
+.btn-demo:hover{background:#e96d00}
+.auth-buttons{display:flex;gap:12px}
+.login-btn{border:1px solid #ddd;color:#222;padding:9px 18px}
+.login-btn:hover{background:#f4f4f4}
+.signup-btn{background:#0F62FE;color:#fff;padding:10px 20px}
+.signup-btn:hover{background:#0052CC}
+.nav-links > li > a:hover,.nav-links > li > a.active{color:#0F62FE;}
+@media(max-width:992px){
+.navbar{flex-wrap:wrap;padding:16px}
+.nav-right{flex-wrap:wrap}
+.mega-menu{width:95vw;right:0;grid-template-columns:1fr}
 }

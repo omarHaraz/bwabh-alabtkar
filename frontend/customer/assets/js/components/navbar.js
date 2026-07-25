@@ -47,3 +47,14 @@ async function renderAuthSection() {
         `;
     }
 }
+
+
+const currentPath = window.location.pathname;
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    if (link.pathname === currentPath) {
+        link.classList.add("active");
+    }
+
+});

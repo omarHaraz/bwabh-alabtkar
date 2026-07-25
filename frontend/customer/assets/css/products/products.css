@@ -1,0 +1,281 @@
+/*=====================================
+            Products Hero
+=====================================*/
+
+.products-hero{
+
+    position: relative;
+
+    height: 420px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background-image: url("../../images/products/products-hero.png"); 
+
+    
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+.hero-overlay{
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(18,42,115,.88),
+        rgba(41,67,176,.78)
+    );
+
+}
+
+.hero-content{
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    padding: 0 20px;
+
+    color: #fff;
+
+}
+
+.hero-badge{
+
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    margin-bottom: 20px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.18);
+
+    backdrop-filter: blur(8px);
+
+    font-size: .95rem;
+
+    font-weight: 500;
+
+}
+
+.products-hero h1{
+
+    font-size: 3.2rem;
+
+    font-weight: 700;
+
+    margin-bottom: 22px;
+
+    line-height: 1.25;
+
+}
+
+.products-hero p{
+
+    font-size: 1.2rem;
+
+    line-height: 2;
+
+    opacity: .95;
+
+}
+
+/*==============================
+        Hero Responsive
+==============================*/
+
+@media (max-width:768px){
+
+    .products-hero{
+
+        height: 340px;
+
+    }
+
+    .products-hero h1{
+
+        font-size: 2.2rem;
+
+    }
+
+    .products-hero p{
+
+        font-size: 1rem;
+
+    }
+
+}
+
+/*=====================================
+          Product Showcase
+=====================================*/
+
+.product-showcase{
+
+    padding: 90px 0;
+
+    background: #fff;
+
+}
+
+.product-showcase .container{
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 60px;
+
+}
+
+/* Second section layout */
+
+.product-showcase.reverse .container{
+
+    flex-direction: row-reverse;
+
+}
+
+.product-image{
+
+    flex: 1.1;
+
+}
+
+.product-image img{
+
+    width: 100%;
+
+    display: block;
+
+    border-radius: 12px;
+
+}
+
+.product-content{
+
+    flex: 0.9;
+
+}
+
+.product-content h2{
+
+    font-size: 2.3rem;
+
+    margin-bottom: 20px;
+
+    color: #16233b;
+
+}
+
+.product-content p{
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    color: #555;
+
+    margin-bottom: 25px;
+
+}
+
+.product-content ul{
+
+    margin: 0 0 35px;
+
+    padding-left: 22px;
+
+}
+
+.product-content li{
+
+    margin-bottom: 14px;
+
+    font-size: 1rem;
+
+    color: #333;
+
+}
+
+.product-btn{
+
+    display: inline-block;
+
+    padding: 14px 34px;
+
+    background: #3E4CC9;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: .3s;
+
+}
+
+.product-btn:hover{
+
+    background: #2f3fb4;
+
+}
+
+
+
+.product-showcase.alt{
+    background: #f8f9fc;
+}
+
+/*=====================================
+        Product Responsive
+=====================================*/
+
+@media (max-width:992px){
+
+    .product-showcase .container,
+    .product-showcase.reverse .container{
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+    .product-content ul{
+
+        display: inline-block;
+
+        text-align: left;
+
+    }
+
+}

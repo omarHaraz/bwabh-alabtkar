@@ -1,0 +1,105 @@
+/* --- Footer Main Container --- */
+.site-footer {
+    background-color: #F8FAFC; /* Light Gray Background */
+    border-top: 1px solid #E5E7EB;
+    padding: 60px 40px 20px 40px;
+    color: #1F2937;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    margin-top: 50px;
+}
+
+/* --- Footer Grid Layout --- */
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* First column is wider for the logo */
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* --- Footer Columns & Typography --- */
+.footer-column h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Small Orange line under headings for design flair */
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 3px;
+    background-color: #FF8A00; 
+    border-radius: 2px;
+}
+
+/* --- Brand Column Specifics --- */
+.brand-column .logo-container {
+    margin-bottom: 15px;
+}
+
+.footer-description {
+    font-size: 0.95rem;
+    color: #6B7280;
+    line-height: 1.6;
+    max-width: 250px;
+}
+
+/* --- Footer Links --- */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #4B5563; /* Medium Gray for links */
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #0F62FE; /* Corporate Blue Hover */
+    transform: translateX(-5px); /* Slides slightly left (RTL) on hover */
+}
+
+/* --- Footer Bottom (Copyright) --- */
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #E5E7EB;
+    font-size: 0.85rem;
+    color: #6B7280;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+    .brand-column {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* 1 column on phones */
+    }
+    .brand-column {
+        grid-column: span 1;
+    }
+}
