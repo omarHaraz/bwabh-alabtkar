@@ -50,39 +50,50 @@ async function loadCustomers() {
                 ? '<span class="badge badge-sm bg-gradient-success">Active</span>'
                 : '<span class="badge badge-sm bg-gradient-danger">Deactivated</span>';
 
-            const actionButton = customer.enabled
-                ? `<a class="btn btn-link text-danger text-gradient px-3 mb-0"
-                        href="javascript:;"
-                        onclick="deactivateCustomer(${customer.id})">
-                        <i class="material-icons text-sm me-2">delete</i>Deactivate
-                   </a>`
-                : `<span class="text-xs text-muted px-3">No actions available</span>`;
-
             const row = `
-                <tr>
-                    <td>
-                        <div class="d-flex px-2 py-1">
-                            <h6 class="mb-0 text-sm">${customer.name}</h6>
-                        </div>
-                    </td>
+             <tr>                      
 
-                    <td>
-                        <p class="text-xs font-weight-bold mb-0">${customer.email}</p>
-                    </td>
+                 <td>
+                     <div class="d-flex px-3 py-1 align-items-center">
+                         <h6 class="mb-0 text-sm">${customer.name}</h6>
+                     </div>
+                 </td>                      
 
-                    <td>${statusBadge}</td>
+                 <td>
+                     <p class="text-sm font-weight-bold mb-0">${customer.email}</p>
+                 </td>                      
 
-                    <td>
-                        <a class="btn btn-link text-dark px-3 mb-0"
-                           href="javascript:;"
-                           onclick="openEditModal(${customer.id})">
-                            <i class="material-icons text-sm me-2">edit</i>Edit
-                        </a>
+                 <td class="align-middle text-center">
+                     ${statusBadge}
+                 </td>                      
 
-                        ${actionButton}
-                    </td>
-                </tr>
-            `;
+                 <td class="align-middle text-center">
+                     <a class="btn btn-link text-dark px-2 mb-0"
+                        href="javascript:;"
+                        onclick="openEditModal(${customer.id})">
+                         <i class="material-symbols-rounded text-sm">edit</i>
+                         Edit
+                     </a>                      
+
+                ${customer.enabled ? `
+                <a class="btn btn-link text-danger px-2 mb-0"
+                   href="javascript:;"
+                   onclick="deactivateCustomer(${customer.id})">
+                    <i class="material-symbols-rounded text-sm">delete</i>
+                    Deactivate
+                </a>
+                ` : `
+                <a class="btn btn-link text-success px-2 mb-0"
+                   href="javascript:;"
+                   onclick="reactivateCustomer(${customer.id})">
+                    <i class="material-symbols-rounded text-sm">restore</i>
+                    Reactivate
+                </a>
+                `}
+                 </td>                      
+
+             </tr>
+             `;
 
             tableBody.innerHTML += row;
         });
@@ -184,6 +195,40 @@ async function deactivateCustomer(id) {
         } else {
 
             alert("Failed to deactivate customer.");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+}
+
+
+// Reactivate Customer
+async function reactivateCustomer(id) {
+
+    if (!confirm("Are you sure you want to reactivate this customer?")) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(`${API_BASE_URL}/${id}/reactivate`, {
+            method: "PATCH",
+            headers: authHeader
+        });
+
+        if (response.ok || response.status === 204) {
+
+            alert("Customer reactivated successfully.");
+
+            loadCustomers();
+
+        } else {
+
+            alert("Failed to reactivate customer.");
 
         }
 

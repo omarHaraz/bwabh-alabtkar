@@ -35,12 +35,25 @@ public class CustomerManagementController
         return ResponseEntity.ok(userService.updateUser(id, request));
     }
 
+    @PatchMapping("/{id}/reactivate")
+    public ResponseEntity<Void> reactivateCustomer(@PathVariable Long id) {
+
+        userService.reactivateUser(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deactivateCustomer(@PathVariable Long id) {
 
         userService.deactivateUser(id);
         return ResponseEntity.noContent().build();
     }
+
+
+
 
 
 }

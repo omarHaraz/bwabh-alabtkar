@@ -4,7 +4,7 @@ const API_BASE_URL = 'http://localhost:8080/api/admin/management';
 const user = JSON.parse(localStorage.getItem("user"));
 
 if (!user || !user.token) {
-    window.location.href = "../../customer/login.html";
+    window.location.href = "../../auth/login.html";
 }
 
 const authHeader = {
@@ -45,25 +45,55 @@ async function loadAdmins() {
                 : '<span class="badge badge-sm bg-gradient-danger">Deactivated</span>';
 
             const actionButton = admin.enabled
-                ? `<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" onclick="deactivateAdmin(${admin.id})">
-                     <i class="material-icons text-sm me-2">delete</i>Deactivate
+                ? `<a class="btn btn-link text-danger text-gradient px-3 mb-0"
+                        href="javascript:;"
+                        onclick="deactivateAdmin(${admin.id})">
+                        <i class="material-icons text-sm me-2">delete</i>Deactivate
                    </a>`
-                : `<span class="text-xs text-muted px-3">No actions available</span>`;
+                : `<a class="btn btn-link text-success px-3 mb-0"
+                        href="javascript:;"
+                        onclick="reactivateAdmin(${admin.id})">
+                        <i class="material-icons text-sm me-2">restore</i>Reactivate
+                   </a>`;           
 
-            const row = `
-                <tr>
-                    <td><div class="d-flex px-2 py-1"><h6 class="mb-0 text-sm">${admin.name}</h6></div></td>
-                    <td><p class="text-xs font-weight-bold mb-0">${admin.email}</p></td>
-                    <td><span class="badge badge-sm bg-gradient-dark">${admin.roles.join(', ')}</span></td>
-                    <td>${statusBadge}</td>
-                    <td>
-                        <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;" onclick="openEditModal(${admin.id})">
-                            <i class="material-icons text-sm me-2">edit</i>Edit
-                        </a>
-                        ${actionButton}
-                    </td>
-                </tr>
-            `;
+           const row = `
+           <tr>           
+
+               <td>
+                   <div class="d-flex px-3 py-1 align-items-center">
+                       <h6 class="mb-0 text-sm">${admin.name}</h6>
+                   </div>
+               </td>           
+
+               <td>
+                   <p class="text-sm font-weight-bold mb-0">${admin.email}</p>
+               </td>           
+
+               <td class="align-middle">
+                   <span class="badge badge-sm bg-gradient-dark">
+                       ${admin.roles.join(', ')}
+                   </span>
+               </td>           
+
+               <td class="align-middle text-center">
+                   ${statusBadge}
+               </td>           
+
+               <td class="align-middle text-center">           
+
+                   <a class="btn btn-link text-dark px-2 mb-0"
+                      href="javascript:;"
+                      onclick="openEditModal(${admin.id})">
+                       <i class="material-symbols-rounded text-sm">edit</i>
+                       Edit
+                   </a>           
+
+                   ${actionButton}           
+
+               </td>           
+
+           </tr>
+           `;
             tableBody.innerHTML += row;
         });
     } catch (error) {
@@ -170,3 +200,38 @@ async function deactivateAdmin(id) {
         }
     }
 }
+
+// Reactivate Admin
+async function reactivateAdmin(id) {
+
+    if (!confirm("Are you sure you want to reactivate this administrator?")) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(`${API_BASE_URL}/${id}/reactivate`, {
+            method: "PATCH",
+            headers: authHeader
+        });
+
+        if (response.ok || response.status === 204) {
+
+            alert("Administrator reactivated successfully.");
+
+            loadAdmins();
+
+        } else {
+
+            alert("Failed to reactivate administrator.");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Email Verification</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="login-wrapper">
+
+            <div class="auth-card">
+
+                <!-- Logo -->
+
+                <div class="logo-container">
+
+                    <img
+                        src="images/logo.png"
+                        alt="Logo">
+
+                    <h1>Email Verification</h1>
+
+                    <p>
+
+                        We sent a verification code to
+
+                    </p>
+
+                    <strong id="displayEmail"></strong>
+
+                </div>
+
+                <!-- OTP Error -->
+
+                <span
+                    id="otpError"
+                    class="field-error text-center">
+                </span>
+
+                <!-- OTP Inputs -->
+
+                <div class="otp-container">
+
+                    <input
+                        type="text"
+                        maxlength="1"
+                        class="otp-input"
+                        inputmode="numeric">
+
+                    <input
+                        type="text"
+                        maxlength="1"
+                        class="otp-input"
+                        inputmode="numeric">
+
+                    <input
+                        type="text"
+                        maxlength="1"
+                        class="otp-input"
+                        inputmode="numeric">
+
+                    <input
+                        type="text"
+                        maxlength="1"
+                        class="otp-input"
+                        inputmode="numeric">
+
+                    <input
+                        type="text"
+                        maxlength="1"
+                        class="otp-input"
+                        inputmode="numeric">
+
+                    <input
+                        type="text"
+                        maxlength="1"
+                        class="otp-input"
+                        inputmode="numeric">
+
+                </div>
+
+                <!-- Verify Button -->
+
+                <button
+                    id="verifyBtn"
+                    type="button"
+                    class="btn-primary">
+
+                    Verify Code
+
+                </button>
+
+                <!-- Resend Button -->
+
+                <button
+                    id="resendBtn"
+                    type="button"
+                    class="btn-secondary">
+
+                    Resend Code
+
+                </button>
+
+                <!-- Footer -->
+
+                <p class="signup-text">
+
+                    Wrong email?
+
+                    <a href="forgot-password.html">
+
+                        Change Email
+
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script
+        type="module"
+        src="js/verify-reset.js">
+    </script>
+
+</body>
+
+</html>

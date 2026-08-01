@@ -85,6 +85,8 @@ public class UserService {
         user.setPassword(request.getPassword());
         Set<String> roles = new java.util.HashSet<>();
         roles.add("ROLE_CUSTOMER");
+
+        user.setRoles(roles);
         user.setEnabled(true);
         return userRepository.save(user);
     }
@@ -134,5 +136,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+
+    public void reactivateUser(Long id) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setEnabled(true);
+
+        userRepository.save(user);
+    }
 
 }

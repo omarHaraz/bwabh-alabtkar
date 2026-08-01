@@ -224,4 +224,183 @@ public class AuthController {
                 )
         );
     }
+
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(
+            @RequestBody ForgotPasswordRequest request) {
+
+        try {
+
+            User user = userRepository
+                    .findByEmail(request.getEmail())
+                    .orElse(null);
+
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("No account found with this email.");
+            }
+
+            String code = String.format(
+                    "%06d",
+                    new SecureRandom().nextInt(1_000_000)
+            );
+
+            PendingPasswordReset reset =
+                    new PendingPasswordReset(
+                            request.getEmail(),
+                            code
+                    );
+
+            otpService.savePendingPasswordReset(reset);
+
+            System.out.println("Forgot password for: " + request.getEmail());
+
+            emailService.sendHtmlEmail(
+                    request.getEmail(),
+                    "Your StyleSphere Password Reset Code",
+                    code
+            );
+
+            System.out.println("Email sent successfully.");
+
+            return ResponseEntity.ok(
+                    "Verification code sent."
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to send verification code.");
+
+        }
+    }
+
+    @PostMapping("/verify-reset-code")
+    public ResponseEntity<?> verifyResetCode(
+            @RequestBody ResetPasswordVerificationRequest request) {
+
+        try {
+
+            PendingPasswordReset reset =
+                    otpService.getPendingPasswordReset(request.getEmail());
+
+            if (reset == null) {
+
+                return ResponseEntity
+                        .status(HttpStatus.UNAUTHORIZED)
+                        .body("Verification code expired.");
+
+            }
+
+            if (!reset.getOtp().equals(request.getCode())) {
+
+                return ResponseEntity
+                        .status(HttpStatus.UNAUTHORIZED)
+                        .body("Invalid verification code.");
+
+            }
+
+            return ResponseEntity.ok("Verification successful.");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Verification failed.");
+
+        }
+
+    }
+
+
+    @PostMapping("/resend-reset-code")
+    public ResponseEntity<?> resendResetCode(
+            @RequestBody ForgotPasswordRequest request) {
+
+        try {
+
+            PendingPasswordReset reset =
+                    otpService.getPendingPasswordReset(request.getEmail());
+
+            if (reset == null) {
+
+                return ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .body("Password reset session expired.");
+
+            }
+
+            String newOtp = String.format(
+                    "%06d",
+                    new SecureRandom().nextInt(1_000_000)
+            );
+
+            reset.setOtp(newOtp);
+
+            otpService.savePendingPasswordReset(reset);
+
+            emailService.sendHtmlEmail(
+                    reset.getEmail(),
+                    "Your StyleSphere Password Reset Code",
+                    newOtp
+            );
+
+            return ResponseEntity.ok(
+                    "Verification code resent."
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to resend verification code.");
+
+        }
+
+    }
+
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(
+            @RequestBody ResetPasswordRequest request) {
+
+        try {
+
+            PendingPasswordReset reset =
+                    otpService.getPendingPasswordReset(request.getEmail());
+
+            if (reset == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Password reset session expired.");
+            }
+
+            User user = userRepository.findByEmail(request.getEmail())
+                    .orElseThrow(() -> new RuntimeException("User not found."));
+
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+            userRepository.save(user);
+
+            otpService.deletePendingPasswordReset(request.getEmail());
+
+            return ResponseEntity.ok("Password reset successfully.");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to reset password.");
+        }
+    }
+
+
 }

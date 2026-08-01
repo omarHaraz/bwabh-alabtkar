@@ -17,7 +17,8 @@ public class JwtTokenProvider {
             "YourSuperSecretKeyThatIsAtLeast32CharactersLong1234567890".getBytes(StandardCharsets.UTF_8)
     );
 
-    private final long jwtExpirationInMs = 3600000;
+    private final long jwtExpirationInMs = 86400000 * 7 ;// 7 day
+
 
     public String generateToken(String username, Set<String> roles) {
 

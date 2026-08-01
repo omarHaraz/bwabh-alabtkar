@@ -125,6 +125,67 @@ class AuthService {
             return null;
         }
     }
+
+
+    async forgotPassword(email) {
+    
+        const response = await axios.post(
+            API_URL + "forgot-password",
+            {
+                email
+            }
+        );
+    
+        return response.data;
+    }
+    
+    async verifyResetCode(email, code) {
+    
+        const response = await axios.post(
+            API_URL + "verify-reset-code",
+            {
+                email,
+                code
+            }
+        );
+    
+        return response.data;
+    }
+    
+    async resendResetCode(email) {
+    
+        const response = await axios.post(
+            API_URL + "resend-reset-code",
+            {
+                email
+            }
+        );
+    
+        return response.data;
+    }
+    
+    async resetPassword(email, code, password) {
+    
+        const response = await axios.post(
+            API_URL + "reset-password",
+            {
+                email,
+                code,
+                password
+            }
+        );
+    
+        return response.data;
+    }
+
+
 }
+
+
+
+
+
+
+
 
 export default new AuthService();

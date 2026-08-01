@@ -1,57 +1,956 @@
+/* =====================================================
+   RESET
+===================================================== */
 
-/* navbar.css
-   Ready-to-use navbar stylesheet.
-   Replace with your project colors as needed.
-*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter','Poppins',sans-serif;
+}
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Poppins',sans-serif}
-body{background:#f8fafc}
-.navbar{display:flex;justify-content:space-between;align-items:center;padding:12px 50px;background:#fff;border-bottom:1px solid #e5e7eb;box-shadow:0 2px 10px rgba(0,0,0,.06);position:relative;z-index:1000}
-.nav-left,.nav-right{display:flex;align-items:center}
-.nav-right{gap:18px}
-.logo-container{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-icon{width:70px;height:auto}
-.logo-text{display:flex;flex-direction:column}
-.logo-text-ar{font-size:22px;font-weight:700;color:#0052CC}
-.logo-text-en{font-size:14px;font-weight:600;color:#0F62FE}
-.main-navigation{direction:rtl}
-.nav-links{list-style:none;display:flex;gap:30px;align-items:center}
-.nav-links>li{position:relative;padding-bottom:16px}
-.nav-links>li>a{text-decoration:none;color:#1f2937;font-weight:600;display:flex;align-items:center;gap:8px}
-.nav-links>li>a:hover{color:#0F62FE}
+body{
+    background:#f8fafc;
+}
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+    position:sticky;
+    top:0;
+    z-index:9999;
+
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:14px 48px;
+
+    background:#fff;
+
+    border-bottom:1px solid #ececec;
+
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+
+}
+
+/* =====================================================
+   LEFT
+===================================================== */
+
+.nav-left{
+
+    flex-shrink:0;
+
+}
+
+.logo-container{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+.logo-icon{
+
+    width:64px;
+    height:auto;
+
+}
+
+.logo-text{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.logo-text-ar{
+
+    font-size:22px;
+    font-weight:700;
+    color:#0052CC;
+
+}
+
+.logo-text-en{
+
+    font-size:14px;
+    color:#0F62FE;
+    font-weight:600;
+
+}
+
+/* =====================================================
+   RIGHT
+===================================================== */
+
+.nav-right{
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    gap:30px;
+
+    flex:1;
+
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.main-navigation{
+
+    direction:rtl;
+
+}
+
+.nav-links{
+
+    display:flex;
+    align-items:center;
+    gap:28px;
+
+}
+
+.nav-links>li{
+
+    position:relative;
+
+}
+
+.nav-links>li>a{
+
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+    font-size:15px;
+    font-weight:600;
+
+    color:#222;
+
+    transition:.25s;
+
+}
+
+.nav-links>li>a:hover{
+
+    color:#0F62FE;
+
+}
+
+.nav-links a.active{
+
+    color:#0F62FE;
+
+}
+
+/* =====================================================
+   DROPDOWN
+===================================================== */
+
 .dropdown-menu{
-position:absolute;top:100%;right:0;min-width:230px;background:#fff;border:1px solid #ececec;border-radius:10px;
-box-shadow:0 12px 30px rgba(0,0,0,.12);list-style:none;
-opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;
-transition:.25s;z-index:9999}
-.dropdown:hover>.dropdown-menu,.dropdown-menu:hover{opacity:1;visibility:visible;transform:none;pointer-events:auto}
-.dropdown-menu a{display:block;padding:14px 18px;color:#444;text-decoration:none}
-.dropdown-menu a:hover{background:#f5f7fb;color:#0F62FE}
-.mega-dropdown{position:relative}
+
+    position:absolute;
+
+    top:calc(100% + 18px);
+
+    right:0;
+
+    min-width:240px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    border:1px solid #eee;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+    overflow:hidden;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(12px);
+
+    transition:.25s;
+
+    z-index:999;
+
+}
+
+.dropdown:hover>.dropdown-menu{
+
+    opacity:1;
+    visibility:visible;
+    transform:none;
+
+}
+
+.dropdown-menu li{
+
+    border-bottom:1px solid #f4f4f4;
+
+}
+
+.dropdown-menu li:last-child{
+
+    border-bottom:none;
+
+}
+
+.dropdown-menu a{
+
+    display:block;
+
+    padding:15px 20px;
+
+    color:#444;
+
+    transition:.25s;
+
+}
+
+.dropdown-menu a:hover{
+
+    background:#f7f9fc;
+
+    color:#0F62FE;
+
+}
+
+/* =====================================================
+   MEGA MENU
+===================================================== */
+
+.mega-dropdown{
+
+    position:relative;
+
+}
+
 .mega-menu{
-position:absolute;top:100%;right:-280px;width:900px;background:#fff;border:1px solid #ececec;border-radius:12px;
-box-shadow:0 18px 40px rgba(0,0,0,.15);padding:35px;display:grid;grid-template-columns:repeat(3,1fr);gap:35px;
-opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;transition:.25s;z-index:9999}
-.mega-dropdown:hover>.mega-menu,.mega-menu:hover{opacity:1;visibility:visible;transform:none;pointer-events:auto}
-.mega-column{display:flex;flex-direction:column}
-.mega-column h4{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:18px}
-.mega-column h4 i{color:#0F62FE}
-.mega-column a{text-decoration:none;color:#555;padding:10px 0;transition:.2s}
-.mega-column a:hover{color:#0F62FE;padding-right:8px}
-.mega-column:not(:last-child){border-left:1px solid #ececec;padding-left:30px}
-.btn-sales,.login-btn,.signup-btn,.btn-demo{text-decoration:none;border-radius:8px;font-weight:600;transition:.25s}
-.btn-sales{border:2px solid #0F62FE;color:#0F62FE;padding:10px 18px}
-.btn-sales:hover{background:#0F62FE;color:#fff}
-.btn-demo{background:#ff7b00;color:#fff;padding:10px 20px}
-.btn-demo:hover{background:#e96d00}
-.auth-buttons{display:flex;gap:12px}
-.login-btn{border:1px solid #ddd;color:#222;padding:9px 18px}
-.login-btn:hover{background:#f4f4f4}
-.signup-btn{background:#0F62FE;color:#fff;padding:10px 20px}
-.signup-btn:hover{background:#0052CC}
-.nav-links > li > a:hover,.nav-links > li > a.active{color:#0F62FE;}
-@media(max-width:992px){
-.navbar{flex-wrap:wrap;padding:16px}
-.nav-right{flex-wrap:wrap}
-.mega-menu{width:95vw;right:0;grid-template-columns:1fr}
+
+    position:absolute;
+
+    top:calc(100% + 18px);
+
+    right:-250px;
+
+    width:900px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #ececec;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+    padding:35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(12px);
+
+    transition:.25s;
+
+    z-index:999;
+
+}
+
+.mega-dropdown:hover>.mega-menu{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:none;
+
+}
+
+.mega-column{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.mega-column:not(:last-child){
+
+    border-left:1px solid #ececec;
+
+    padding-left:30px;
+
+}
+
+.mega-column h4{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:18px;
+
+    color:#111;
+
+}
+
+.mega-column h4 i{
+
+    color:#0F62FE;
+
+}
+
+.mega-column a{
+
+    padding:10px 0;
+
+    color:#555;
+
+    transition:.25s;
+
+}
+
+.mega-column a:hover{
+
+    color:#0F62FE;
+
+    padding-right:8px;
+
+}
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.nav-actions{
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.btn-sales,
+.btn-demo,
+.login-btn,
+.signup-btn{
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    white-space:nowrap;
+
+}
+
+.btn-sales{
+
+    padding:10px 18px;
+
+    border:2px solid #0F62FE;
+
+    color:#0F62FE;
+
+}
+
+.btn-sales:hover{
+
+    background:#0F62FE;
+
+    color:#fff;
+
+}
+
+.btn-demo{
+
+    padding:10px 18px;
+
+    background:#ff7b00;
+
+    color:#fff;
+
+}
+
+.btn-demo:hover{
+
+    background:#e86d00;
+
+}
+
+.auth-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.login-btn{
+
+    padding:10px 18px;
+
+    border:1px solid #ddd;
+
+    color:#222;
+
+}
+
+.login-btn:hover{
+
+    background:#f5f5f5;
+
+}
+
+.signup-btn{
+
+    padding:10px 18px;
+
+    background:#0F62FE;
+
+    color:#fff;
+
+}
+
+.signup-btn:hover{
+
+    background:#0052CC;
+
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-wrapper{
+
+    position:relative;
+
+}
+
+.profile-icon{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    color:#0F62FE;
+
+    font-size:34px;
+
+}
+
+.profile-menu{
+
+    position:absolute;
+
+    top:50px;
+
+    right:0;
+
+    width:220px;
+
+    background:#fff;
+
+    border-radius:14px;
+
+    border:1px solid #eee;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    overflow:hidden;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(10px);
+
+    transition:.25s;
+
+}
+
+.profile-menu.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:none;
+
+}
+
+/* =====================================================
+   PROFILE MENU CONTENT
+===================================================== */
+
+.profile-user{
+    padding:16px;
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+    border-bottom:1px solid #eee;
+    word-break:break-word;
+}
+
+#logout-btn{
+    width:100%;
+    border:none;
+    background:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:10px;
+
+    padding:15px 16px;
+
+    color:#ef4444;
+    font-size:15px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+#logout-btn:hover{
+    background:#fff4f4;
+}
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.mobile-menu-btn{
+
+    display:none;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:28px;
+
+    color:#222;
+
+    transition:.3s;
+
+}
+
+.mobile-menu-btn:hover{
+
+    color:#0F62FE;
+
+}
+
+/* =====================================================
+   LARGE LAPTOP
+===================================================== */
+
+@media (max-width:1400px){
+
+    .navbar{
+
+        padding:14px 30px;
+
+    }
+
+    .nav-right{
+
+        gap:20px;
+
+    }
+
+    .nav-links{
+
+        gap:18px;
+
+    }
+
+    .mega-menu{
+
+        width:760px;
+
+        right:-180px;
+
+    }
+
+}
+
+/* =====================================================
+   LAPTOP
+===================================================== */
+
+@media (max-width:1200px){
+
+    .navbar{
+
+        padding:12px 20px;
+
+    }
+
+    .logo-icon{
+
+        width:55px;
+
+    }
+
+    .logo-text-ar{
+
+        font-size:18px;
+
+    }
+
+    .logo-text-en{
+
+        font-size:12px;
+
+    }
+
+    .nav-links{
+
+        gap:15px;
+
+    }
+
+    .btn-sales,
+    .btn-demo,
+    .login-btn,
+    .signup-btn{
+
+        padding:9px 14px;
+
+        font-size:14px;
+
+    }
+
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width:992px){
+
+    .navbar{
+
+        padding:14px 18px;
+
+        flex-wrap:wrap;
+
+    }
+
+    .mobile-menu-btn{
+
+        display:block;
+
+    }
+
+    .nav-right{
+
+        position:absolute;
+
+        top:100%;
+
+        left:0;
+
+        width:100%;
+
+        background:#fff;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:20px;
+
+        padding:20px;
+
+        border-top:1px solid #eee;
+
+        box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+        display:none;
+
+    }
+
+    .nav-right.active{
+
+        display:flex;
+
+    }
+
+    .main-navigation{
+
+        width:100%;
+
+    }
+
+    .nav-links{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:0;
+
+    }
+
+    .nav-links>li{
+
+        width:100%;
+
+        border-bottom:1px solid #eee;
+
+    }
+
+    .nav-links>li>a{
+
+        justify-content:space-between;
+
+        padding:16px 0;
+
+    }
+
+    .dropdown-menu{
+
+        position:static;
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:none;
+
+        display:none;
+
+        border:none;
+
+        box-shadow:none;
+
+        width:100%;
+
+        min-width:100%;
+
+        border-radius:0;
+
+    }
+
+    .mobile-dropdown.active>.dropdown-menu{
+
+        display:block;
+
+    }
+
+    .mega-menu{
+
+        position:static;
+
+        display:none;
+
+        width:100%;
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:none;
+
+        border:none;
+
+        box-shadow:none;
+
+        padding:10px 0;
+
+        grid-template-columns:1fr;
+
+    }
+
+    .mega-dropdown.active>.mega-menu{
+
+        display:grid;
+
+    }
+
+    .mega-column{
+
+        padding:15px 0;
+
+    }
+
+    .mega-column:not(:last-child){
+
+        border:none;
+
+        padding-left:0;
+
+    }
+
+    .nav-actions{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .btn-sales,
+    .btn-demo{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .auth-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .login-btn,
+    .signup-btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .profile-wrapper{
+
+        width:100%;
+
+    }
+
+    .profile-icon{
+
+        width:100%;
+
+        display:flex;
+
+        justify-content:center;
+
+        font-size:42px;
+
+    }
+
+    .profile-menu{
+
+        position:relative;
+
+        top:auto;
+
+        right:auto;
+
+        width:100%;
+
+        margin-top:12px;
+
+    }
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width:600px){
+
+    .navbar{
+
+        padding:12px 15px;
+
+    }
+
+    .logo-text{
+
+        display:none;
+
+    }
+
+    .logo-icon{
+
+        width:48px;
+
+    }
+
+    .mobile-menu-btn{
+
+        font-size:24px;
+
+    }
+
+    .nav-right{
+
+        padding:16px;
+
+    }
+
+}
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width:380px){
+
+    .btn-sales,
+    .btn-demo,
+    .login-btn,
+    .signup-btn{
+
+        font-size:13px;
+
+        padding:10px;
+
+    }
+
+    .profile-user{
+
+        font-size:14px;
+
+    }
+
 }

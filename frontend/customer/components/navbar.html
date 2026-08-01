@@ -1,4 +1,18 @@
-<header class="navbar">
+<header class="navbar" dir="ltr">
+
+    <!-- =========================
+            LOGO
+    ========================== -->
+    <div class="nav-left">
+
+        <a href="/customer/pages/home.html" class="logo-container">
+
+            <img
+                src="/customer/assets/images/logo-icon.png"
+                alt="Innovation Hub"
+                class="logo-icon">
+
+            <div class="logo-text">
 
                 <span class="logo-text-ar">
                     بوابة الإبتكار
@@ -14,17 +28,293 @@
 
     </div>
 
-    <nav>
-        <ul class="nav-links">
-            <li><a href="home.html">الرئيسية</a></li>
-            <li><a href="#">الدخول للكورسات</a></li>
-            <li><a href="#">مجتمع الاعضاء</a></li>
-            <li><a href="#">حجز استشارة خاصة</a></li>
-            <li><a href="#">الكورسات و الكتب</a></li>
-        </ul>
-    </nav>
+    <!-- =========================
+            MOBILE MENU BUTTON
+    ========================== -->
+    <button
+        id="mobile-menu-btn"
+        class="mobile-menu-btn"
+        type="button"
+        aria-label="Toggle Navigation">
 
-    <!-- Login/Profile -->
-    <div id="auth-section"></div>
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+    <!-- =========================
+            RIGHT SIDE
+    ========================== -->
+    <div class="nav-right" id="nav-right">
+
+        <!-- =========================
+                NAVIGATION
+    ========================== -->
+        <nav
+            class="main-navigation"
+            id="main-navigation"
+            dir="rtl">
+
+            <ul class="nav-links">
+
+                <!-- ================= PRODUCTS ================= -->
+
+                <li class="dropdown mobile-dropdown">
+
+                    <a
+                        href="/customer/pages/products/products.html"
+                        class="dropdown-toggle">
+
+                        المنتجات
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+
+                            <a href="/customer/pages/products/idea-management/idea-management.html">
+
+                                إدارة الأفكار
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="/customer/pages/products/whiteboard/whiteboard.html">
+
+                                التعاون المرئي
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="/customer/pages/products/ai-analysis/ai-analysis.html">
+
+                                تحليلات الذكاء الاصطناعي
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- ================= SOLUTIONS ================= -->
+
+                <li class="dropdown mobile-dropdown">
+
+                    <a
+                        href="/customer/pages/solutions/solutions.html"
+                        class="dropdown-toggle">
+
+                        الحلول
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+
+                            <a href="/customer/pages/solutions/enterprise/enterprise.html">
+
+                                المؤسسات
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="/customer/pages/solutions/government/government.html">
+
+                                القطاع الحكومي
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="/customer/pages/solutions/education/education.html">
+
+                                التعليم
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="/customer/pages/solutions/healthcare/healthcare.html">
+
+                                الرعاية الصحية
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- ================= RESOURCES ================= -->
+
+                <li class="dropdown mega-dropdown mobile-dropdown">
+
+                    <a
+                        href="#"
+                        class="dropdown-toggle"
+                        style="color: inherit; text-decoration: none;">
+
+                        المصادر
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </a>
+
+                    <div class="mega-menu">
+
+                        <!-- Column -->
+
+                        <div class="mega-column">
+
+                            <h4>
+
+                                <i class="fa-solid fa-lightbulb"></i>
+
+                                لماذا Innovation Hub؟
+
+                            </h4>
+
+                            <a href="#">
+                                الجوائز والتقييمات
+                            </a>
+
+                            <a href="#">
+                                دراسات الحالة
+                            </a>
+
+                            <a href="#">
+                                لماذا تختار Innovation Hub؟
+                            </a>
+
+                        </div>
+
+                        <!-- Column -->
+
+                        <div class="mega-column">
+
+                            <h4>
+
+                                <i class="fa-solid fa-graduation-cap"></i>
+
+                                التعلم
+
+                            </h4>
+
+                            <a href="#">
+                                المدونة
+                            </a>
+
+                            <a href="#">
+                                الاختبارات
+                            </a>
+
+                            <a href="#">
+                                دورات الابتكار
+                            </a>
+
+                        </div>
+
+                        <!-- Column -->
+
+                        <div class="mega-column">
+
+                            <h4>
+
+                                <i class="fa-solid fa-book-open"></i>
+
+                                مكتبة المصادر
+
+                            </h4>
+
+                            <a href="#">
+                                الفعاليات
+                            </a>
+
+                            <a href="#">
+                                الأوراق البيضاء والمصادر
+                            </a>
+
+                            <a href="#">
+                                الحملات العامة
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <!-- =========================
+                ACTIONS
+    ========================== -->
+
+        <div class="nav-actions">
+
+            <a href="#" class="btn-sales">
+
+                تواصل مع المبيعات
+
+            </a>
+
+            <a href="#" class="btn-demo">
+
+                احصل على عرض تجريبي
+
+            </a>
+
+            <!-- Filled dynamically by navbar.js -->
+
+            <div id="auth-section">
+
+                <div class="auth-buttons">
+
+                    <a
+                        href="/auth/login.html"
+                        class="login-btn">
+
+                        Login
+
+                    </a>
+
+                    <a
+                        href="/auth/signup.html"
+                        class="signup-btn">
+
+                        Sign Up
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </header>

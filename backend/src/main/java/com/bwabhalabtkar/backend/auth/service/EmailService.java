@@ -1,12 +1,10 @@
 package com.bwabhalabtkar.backend.auth.service;
 
-
-
-import com.resend.Resend;
-import com.resend.core.exception.ResendException;
-import com.resend.services.emails.model.CreateEmailOptions;
-import com.resend.services.emails.model.CreateEmailResponse;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
@@ -16,53 +14,53 @@ import org.thymeleaf.context.Context;
 public class EmailService {
 
     @Autowired
-    private Resend resend;
+    private JavaMailSender mailSender;
 
     @Autowired
     private TemplateEngine templateEngine;
 
-    @Async
-    public void sendHtmlEmail(String to, String subject, String otpCode) throws ResendException {
+    // Replace with your Gmail address
+    private static final String FROM = "omarharaz553@gmail.com";
 
-        // Prepare Thymeleaf variables
+    @Async
+    public void sendHtmlEmail(String to, String subject, String otpCode) throws MessagingException {
+
         Context context = new Context();
         context.setVariable("otpCode", otpCode);
 
-        // Generate HTML from template
         String htmlContent = templateEngine.process("otp-email", context);
 
-        // Create the email request
-        CreateEmailOptions request = CreateEmailOptions.builder()
-                .from("bwabhalabtkar <onboarding@resend.dev>")
-                .to(to)
-                .subject(subject)
-                .html(htmlContent)
-                .build();
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        // Send email
-        CreateEmailResponse data = resend.emails().send(request);
+        helper.setFrom(FROM);
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(htmlContent, true);
+
+        mailSender.send(message);
+
+        System.out.println("OTP email sent successfully.");
     }
 
-
     @Async
-    public void sendWelcomeEmail(String to, String name) throws ResendException {
+    public void sendWelcomeEmail(String to, String name) throws MessagingException {
 
         Context context = new Context();
         context.setVariable("name", name);
 
-        String html = templateEngine.process("welcome-email", context);
+        String htmlContent = templateEngine.process("welcome-email", context);
 
-        CreateEmailOptions request = CreateEmailOptions.builder()
-                .from("bwabhalabtkar <onboarding@resend.dev>")
-                .to(to)
-                .subject("Welcome to StyleSphere 🎉")
-                .html(html)
-                .build();
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        resend.emails().send(request);
+        helper.setFrom(FROM);
+        helper.setTo(to);
+        helper.setSubject("Welcome to StyleSphere 🎉");
+        helper.setText(htmlContent, true);
+
+        mailSender.send(message);
+
+        System.out.println("Welcome email sent successfully.");
     }
-
-
 }
-
-

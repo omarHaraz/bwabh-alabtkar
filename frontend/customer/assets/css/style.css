@@ -8,9 +8,24 @@
     box-sizing:border-box;
 }
 
+html{
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
 .container{
     max-width:1200px;
     margin:auto;
+    width:100%;
 }
 
 /* ==========================================
@@ -22,7 +37,7 @@
     position:relative;
 
     width:100%;
-    height:100vh;
+    min-height:100vh;
 
     background:url("../images/hero.jpg") center/cover no-repeat;
 
@@ -32,6 +47,8 @@
 
     direction:rtl;
     overflow:hidden;
+
+    padding:40px 20px;
 }
 
 .hero::before{
@@ -48,7 +65,7 @@
     position:relative;
     z-index:2;
 
-    width:90%;
+    width:100%;
     max-width:900px;
 
     text-align:center;
@@ -57,14 +74,16 @@
 
 .hero-content h1{
 
-    font-size:clamp(3rem,6vw,5rem);
+    font-size:clamp(2.1rem,7vw,5rem);
     font-weight:800;
     margin-bottom:20px;
+    line-height:1.2;
+    word-wrap:break-word;
 }
 
 .hero-content h2{
 
-    font-size:clamp(2rem,4vw,3.5rem);
+    font-size:clamp(1.3rem,4.5vw,3.5rem);
     font-weight:600;
     line-height:1.5;
     margin-bottom:30px;
@@ -73,10 +92,10 @@
 .hero-content p{
 
     max-width:720px;
-    margin:0 auto 45px;
+    margin:0 auto clamp(28px,5vw,45px);
 
-    font-size:clamp(1.05rem,1.6vw,1.35rem);
-    line-height:2;
+    font-size:clamp(0.95rem,1.8vw,1.35rem);
+    line-height:1.9;
 
     color:rgba(255,255,255,.92);
 }
@@ -85,7 +104,7 @@
 
     display:inline-block;
 
-    padding:18px 48px;
+    padding:16px 40px;
 
     background:#ff5b2e;
     color:#fff;
@@ -94,10 +113,12 @@
 
     text-decoration:none;
 
-    font-size:1.2rem;
+    font-size:clamp(1rem,2vw,1.2rem);
     font-weight:700;
 
     transition:.3s;
+
+    max-width:100%;
 }
 
 .hero-btn:hover{
@@ -145,19 +166,20 @@
 .section-header{
 
     text-align:center;
-    margin-bottom:70px;
+    margin-bottom:clamp(40px,6vw,70px);
 }
 
 .section-title{
 
-    font-size:42px;
+    font-size:clamp(1.6rem,4.2vw,42px);
     font-weight:700;
 
     color:#1f2937;
 
-    margin-bottom:25px;
+    margin-bottom:20px;
 
     direction:rtl;
+    line-height:1.35;
 }
 
 .section-title .english{
@@ -172,8 +194,8 @@
     max-width:900px;
     margin:auto;
 
-    font-size:19px;
-    line-height:2;
+    font-size:clamp(0.95rem,2vw,19px);
+    line-height:1.9;
 
     color:#555;
 }
@@ -196,7 +218,7 @@
     border:1px solid #e8edf5;
     border-radius:14px;
 
-    padding:40px 35px;
+    padding:clamp(28px,4vw,40px) clamp(22px,3.5vw,35px);
 
     transition:.3s;
 }
@@ -233,7 +255,7 @@
 
 .card h3{
 
-    font-size:30px;
+    font-size:clamp(1.3rem,2.6vw,30px);
     color:#222;
 
     margin-bottom:18px;
@@ -243,10 +265,11 @@
 
 .card p{
 
-    font-size:18px;
+    font-size:clamp(0.95rem,1.7vw,18px);
     line-height:1.9;
 
     color:#666;
+    word-wrap:break-word;
 }
 
 /* ==========================================
@@ -316,11 +339,26 @@
    RESPONSIVE
 ========================================== */
 
+/* Large tablets / small laptops */
+@media (max-width:1200px){
+
+    .container{
+        padding:0 20px;
+    }
+
+    .how-it-works,
+    .innovation-suite,
+    .industry-solutions{
+        padding:80px 6%;
+    }
+}
+
+/* Tablets: switch 3-column grids to 2 columns */
 @media (max-width:992px){
 
     .hero-content{
 
-        width:90%;
+        width:100%;
     }
 
     .hero-content p{
@@ -330,17 +368,18 @@
 
     .cards{
 
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
+        gap:24px;
     }
 
     .section-title{
 
-        font-size:34px;
+        font-size:clamp(1.5rem,4vw,34px);
     }
 
     .section-header p{
 
-        font-size:17px;
+        font-size:clamp(0.95rem,2vw,17px);
     }
 
     .card{
@@ -354,11 +393,12 @@
     }
 }
 
+/* Small tablets / large phones: single column */
 @media (max-width:768px){
 
     .hero{
 
-        height:90vh;
+        min-height:90vh;
         padding:0 20px;
     }
 
@@ -367,28 +407,112 @@
         padding:16px 36px;
         font-size:1rem;
     }
+
+    .how-it-works,
+    .innovation-suite,
+    .industry-solutions{
+        padding:60px 6%;
+    }
+
+    .cards{
+
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .card{
+
+        padding:30px 24px;
+    }
+
+    .card-icon{
+
+        width:60px;
+        height:60px;
+        margin-bottom:20px;
+    }
+
+    .card-icon i{
+
+        font-size:26px;
+    }
 }
 
+/* Phones */
 @media (max-width:480px){
+
+    .hero{
+
+        min-height:85vh;
+        padding:0 16px;
+    }
 
     .hero-content h1{
 
-        font-size:2.4rem;
+        font-size:2.2rem;
     }
 
     .hero-content h2{
 
-        font-size:1.6rem;
+        font-size:1.5rem;
     }
 
     .hero-content p{
 
-        font-size:1rem;
+        font-size:0.95rem;
     }
 
     .hero-btn{
 
         width:100%;
-        max-width:260px;
+        max-width:280px;
+        padding:14px 20px;
+    }
+
+    .how-it-works,
+    .innovation-suite,
+    .industry-solutions{
+        padding:50px 5%;
+    }
+
+    .card{
+
+        padding:26px 18px;
+    }
+
+    .card h3{
+
+        font-size:1.4rem;
+    }
+
+    .card p{
+
+        font-size:0.95rem;
+    }
+
+    .card-btn{
+
+        display:block;
+        text-align:center;
+        margin-top:24px;
+    }
+}
+
+/* Very small phones */
+@media (max-width:360px){
+
+    .hero-content h1{
+
+        font-size:1.8rem;
+    }
+
+    .hero-content h2{
+
+        font-size:1.25rem;
+    }
+
+    .section-title{
+
+        font-size:1.4rem;
     }
 }

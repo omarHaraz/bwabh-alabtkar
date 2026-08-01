@@ -49,6 +49,14 @@ public class AdminManagementController {
         }
     }
 
+    @PatchMapping("/{id}/reactivate")
+    public ResponseEntity<Void> reactivateAdmin(@PathVariable Long id) {
+
+        userService.reactivateUser(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removeAdmin(@PathVariable Long id) {
         userService.deactivateAdminUser(id);

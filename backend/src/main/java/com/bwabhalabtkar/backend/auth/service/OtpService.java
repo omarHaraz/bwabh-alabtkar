@@ -1,5 +1,6 @@
 package com.bwabhalabtkar.backend.auth.service;
 
+import com.bwabhalabtkar.backend.auth.dto.PendingPasswordReset;
 import com.bwabhalabtkar.backend.auth.dto.PendingSignup;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +18,12 @@ public class OtpService {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public void savePendingSignup(PendingSignup signup) throws JsonProcessingException {
+    // ==========================================
+    // Signup OTP
+    // ==========================================
+
+    public void savePendingSignup(PendingSignup signup)
+            throws JsonProcessingException {
 
         String json = objectMapper.writeValueAsString(signup);
 
@@ -28,18 +34,64 @@ public class OtpService {
         );
     }
 
-    public PendingSignup getPendingSignup(String email) throws JsonProcessingException {
+    public PendingSignup getPendingSignup(String email)
+            throws JsonProcessingException {
 
-        String json = redisTemplate.opsForValue().get("signup:" + email);
+        String json = redisTemplate.opsForValue()
+                .get("signup:" + email);
 
         if (json == null) {
             return null;
         }
 
-        return objectMapper.readValue(json, PendingSignup.class);
+        return objectMapper.readValue(
+                json,
+                PendingSignup.class
+        );
     }
 
     public void deletePendingSignup(String email) {
+
         redisTemplate.delete("signup:" + email);
+
     }
+
+    // ==========================================
+    // Password Reset OTP
+    // ==========================================
+
+    public void savePendingPasswordReset(PendingPasswordReset reset)
+            throws JsonProcessingException {
+
+        String json = objectMapper.writeValueAsString(reset);
+
+        redisTemplate.opsForValue().set(
+                "reset:" + reset.getEmail(),
+                json,
+                Duration.ofMinutes(5)
+        );
+    }
+
+    public PendingPasswordReset getPendingPasswordReset(String email)
+            throws JsonProcessingException {
+
+        String json = redisTemplate.opsForValue()
+                .get("reset:" + email);
+
+        if (json == null) {
+            return null;
+        }
+
+        return objectMapper.readValue(
+                json,
+                PendingPasswordReset.class
+        );
+    }
+
+    public void deletePendingPasswordReset(String email) {
+
+        redisTemplate.delete("reset:" + email);
+
+    }
+
 }

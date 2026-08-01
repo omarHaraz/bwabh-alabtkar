@@ -27,9 +27,15 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
         // This tells Spring to completely bypass this filter for auth endpoints
         String path = request.getServletPath();
 
+
         return path.equals("/api/auth/login")
                 || path.equals("/api/auth/request-otp")
-                || path.equals("/api/auth/verify-otp");
+                || path.equals("/api/auth/verify-otp")
+                || path.equals("/api/auth/resend-otp")
+                || path.equals("/api/auth/forgot-password")
+                || path.equals("/api/auth/verify-reset-code")
+                || path.equals("/api/auth/resend-reset-code")
+                || path.equals("/api/auth/reset-password");
     }
 
 
