@@ -1,6 +1,8 @@
 import AuthService from "../../../../auth/services/AuthService.js";
 
 const NAVBAR_HTML_URL = new URL("../../../components/navbar.html", import.meta.url);
+const NAVBAR_HOME_URL = new URL("../../../pages/home.html", import.meta.url).href;
+const LOGO_ICON_URL = new URL("../../images/logo-icon.png", import.meta.url).href;
 const AUTH_BASE_PATH = new URL("../../../../auth/", import.meta.url).pathname;
 
 export async function loadNavbar() {
@@ -13,10 +15,24 @@ export async function loadNavbar() {
 
     navbar.innerHTML = await response.text();
 
+    fixNavbarPaths(navbar);
+
     await renderAuthSection();
 
     initNavbarEvents();
 
+}
+
+function fixNavbarPaths(navbar) {
+    const logo = navbar.querySelector(".logo-icon");
+    if (logo) {
+        logo.src = LOGO_ICON_URL;
+    }
+
+    const homeLink = navbar.querySelector(".logo-container");
+    if (homeLink) {
+        homeLink.href = NAVBAR_HOME_URL;
+    }
 }
 
 
