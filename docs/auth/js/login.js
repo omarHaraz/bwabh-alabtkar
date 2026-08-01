@@ -58,12 +58,20 @@ loginForm.addEventListener('submit', async (e) => {
             const payload = JSON.parse(atob(user.token.split('.')[1]));
             const roles = payload.roles || [];
           
+const repoPrefix = window.location.pathname.includes("/customer/")
+    ? window.location.pathname.split("/customer/")[0]
+    : window.location.pathname.includes("/auth/")
+        ? window.location.pathname.split("/auth/")[0]
+        : window.location.pathname.includes("/admin/")
+            ? window.location.pathname.split("/admin/")[0]
+            : "";
+
 if (roles.includes("ROLE_ADMIN") || roles.includes("ROLE_SUPER_ADMIN")) {
     console.log("Redirecting to admin...");
-    window.location.href = "/admin/pages/dashboard.html";
+    window.location.href = `${repoPrefix}/admin/pages/dashboard.html`;
 } else {
     console.log("Redirecting to customer...");
-    window.location.href = "/customer/pages/home.html";
+    window.location.href = `${repoPrefix}/customer/pages/home.html`;
 }
     } catch (error) {
         formError.hidden = false;

@@ -215,7 +215,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             await AuthService.verifyOtp(signupEmail, code);
 
-            window.location.href = "/customer/pages/home.html";
+            const repoPrefix = window.location.pathname.includes("/customer/")
+                ? window.location.pathname.split("/customer/")[0]
+                : window.location.pathname.includes("/auth/")
+                    ? window.location.pathname.split("/auth/")[0]
+                    : window.location.pathname.includes("/admin/")
+                        ? window.location.pathname.split("/admin/")[0]
+                        : "";
+
+            window.location.href = `${repoPrefix}/customer/pages/home.html`;
 
         } catch (error) {
 

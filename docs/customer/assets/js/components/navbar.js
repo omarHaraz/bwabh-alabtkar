@@ -23,6 +23,25 @@ export async function loadNavbar() {
 
 }
 
+function getRepoPrefix() {
+    const pathname = window.location.pathname;
+    for (const marker of ["/customer/", "/auth/", "/admin/"]) {
+        const index = pathname.indexOf(marker);
+        if (index !== -1) {
+            return pathname.substring(0, index);
+        }
+    }
+    return "";
+}
+
+function normalizeRootAbsoluteHref(href) {
+    if (!href || !href.startsWith("/")) {
+        return href;
+    }
+    const prefix = getRepoPrefix();
+    return `${prefix}${href}`;
+}
+
 function fixNavbarPaths(navbar) {
     const logo = navbar.querySelector(".logo-icon");
     if (logo) {
@@ -33,6 +52,13 @@ function fixNavbarPaths(navbar) {
     if (homeLink) {
         homeLink.href = NAVBAR_HOME_URL;
     }
+
+    navbar.querySelectorAll("a[href^='/customer/'], a[href^='/auth/'], a[href^='/admin/']").forEach(link => {
+        const originalHref = link.getAttribute("href");
+        if (originalHref) {
+            link.href = normalizeRootAbsoluteHref(originalHref);
+        }
+    });
 }
 
 
