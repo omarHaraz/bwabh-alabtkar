@@ -53,10 +53,15 @@ function fixNavbarPaths(navbar) {
         homeLink.href = NAVBAR_HOME_URL;
     }
 
-    navbar.querySelectorAll("a[href^='/customer/'], a[href^='/auth/'], a[href^='/admin/']").forEach(link => {
-        const originalHref = link.getAttribute("href");
+    navbar.querySelectorAll("a[data-href], a[href^='/customer/'], a[href^='/auth/'], a[href^='/admin/']").forEach(link => {
+        const dataHref = link.getAttribute("data-href");
+        const originalHref = dataHref || link.getAttribute("href");
         if (originalHref) {
-            link.href = normalizeRootAbsoluteHref(originalHref);
+            const normalized = normalizeRootAbsoluteHref(originalHref);
+            link.href = normalized;
+            if (dataHref) {
+                link.setAttribute("data-href", normalized);
+            }
         }
     });
 }
