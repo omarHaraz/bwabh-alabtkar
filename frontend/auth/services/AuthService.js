@@ -1,6 +1,6 @@
 import axios from "https://cdn.skypack.dev/axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "https://bwabh-alabtkar-com.onrender.com/api/auth/";
 
 class AuthService {
 
