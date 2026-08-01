@@ -2,6 +2,7 @@ package com.bwabhalabtkar.backend.auth.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
@@ -15,13 +16,15 @@ public class JwtTokenProvider {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
-    // 1. Create a secure SecretKey object once
-    private final SecretKey key = Keys.hmacShaKeyFor(
-            jwtSecret.getBytes(StandardCharsets.UTF_8)
-    );
 
-    private final long jwtExpirationInMs = 86400000 * 7 ;// 7 day
+    private SecretKey key;
 
+    private final long jwtExpirationInMs = 86400000 * 7; // 7 days
+
+    @PostConstruct
+    public void init() {
+        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+    }
 
     public String generateToken(String username, Set<String> roles) {
 
@@ -46,9 +49,7 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-
     public List<String> getRolesFromJWT(String token) {
-
         return Jwts.parser()
                 .verifyWith(key)
                 .build()
