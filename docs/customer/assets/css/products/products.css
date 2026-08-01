@@ -6,26 +6,25 @@
 
     position: relative;
 
-    height: 420px;
-
     display: flex;
 
     align-items: center;
 
     justify-content: center;
 
+    min-height: clamp(340px, 40vh, 420px);
+
     text-align: center;
 
     overflow: hidden;
 
-    background-image: url("../../images/products/products-hero.png"); 
+    background-image: url("../../images/products/products-hero.png");
 
-    
+    background-repeat: no-repeat;
+
     background-size: cover;
 
     background-position: center;
-
-    background-repeat: no-repeat;
 
 }
 
@@ -145,11 +144,7 @@
 
     display: flex;
 
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 60px;
+    flex-wrap: wrap;
 
 }
 
@@ -268,6 +263,21 @@
 
         text-align: center;
 
+        gap: 30px;
+
+    }
+
+    .product-image,
+    .product-content{
+
+        flex: 1 1 100%;
+
+    }
+
+    .product-content{
+
+        margin-top: 30px;
+
     }
 
     .product-content ul{
@@ -275,6 +285,10 @@
         display: inline-block;
 
         text-align: left;
+
+        max-width: 100%;
+
+        margin-inline: auto;
 
     }
 

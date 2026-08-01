@@ -254,17 +254,9 @@ ul{
 
     top:calc(100% + 18px);
 
-    right:-250px;
+    right:0;
 
-    width:900px;
-
-    background:#fff;
-
-    border-radius:18px;
-
-    border:1px solid #ececec;
-
-    box-shadow:0 20px 45px rgba(0,0,0,.15);
+    width:min(900px, calc(100vw - 40px));
 
     padding:35px;
 
@@ -605,9 +597,9 @@ ul{
 
     .mega-menu{
 
-        width:760px;
+        width:min(760px, calc(100vw - 40px));
 
-        right:-180px;
+        right:0;
 
     }
 
@@ -692,6 +684,10 @@ ul{
 
         width:100%;
 
+        max-height: calc(100vh - 84px);
+
+        overflow-y: auto;
+
         background:#fff;
 
         flex-direction:column;
@@ -700,7 +696,7 @@ ul{
 
         gap:20px;
 
-        padding:20px;
+        padding:20px 20px 24px;
 
         border-top:1px solid #eee;
 
@@ -746,6 +742,8 @@ ul{
 
         padding:16px 0;
 
+        flex-wrap: wrap;
+
     }
 
     .dropdown-menu{
@@ -769,6 +767,10 @@ ul{
         min-width:100%;
 
         border-radius:0;
+
+        max-height: calc(100vh - 260px);
+
+        overflow-y: auto;
 
     }
 
@@ -796,9 +798,23 @@ ul{
 
         box-shadow:none;
 
-        padding:10px 0;
+        padding:10px 0 20px;
 
         grid-template-columns:1fr;
+
+    }
+
+    .mega-column{
+
+        padding:18px 20px;
+
+        border-bottom:1px solid #eee;
+
+    }
+
+    .mega-column:last-child{
+
+        border-bottom:none;
 
     }
 
