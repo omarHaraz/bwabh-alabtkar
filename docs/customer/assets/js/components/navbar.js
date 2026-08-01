@@ -1,8 +1,11 @@
-import AuthService from "/auth/services/AuthService.js";
+import AuthService from "../../../../auth/services/AuthService.js";
+
+const NAVBAR_HTML_URL = new URL("../../../components/navbar.html", import.meta.url);
+const AUTH_BASE_PATH = new URL("../../../../auth/", import.meta.url).pathname;
 
 export async function loadNavbar() {
 
-    const response = await fetch("/customer/components/navbar.html");
+    const response = await fetch(NAVBAR_HTML_URL);
 
     const navbar = document.getElementById("navbar");
 
@@ -79,7 +82,7 @@ async function renderAuthSection() {
             <div class="auth-buttons">
 
                 <a
-                    href="/auth/login.html"
+                    href="${AUTH_BASE_PATH}login.html"
                     class="login-btn">
 
                     Login
@@ -87,7 +90,7 @@ async function renderAuthSection() {
                 </a>
 
                 <a
-                    href="/auth/signup.html"
+                    href="${AUTH_BASE_PATH}signup.html"
                     class="signup-btn">
 
                     Sign Up
@@ -287,7 +290,7 @@ function initProfileMenu() {
 
             AuthService.logout();
 
-            window.location.href = "/auth/login.html";
+            window.location.href = `${AUTH_BASE_PATH}login.html`;
 
         });
 
