@@ -53,7 +53,7 @@ function fixNavbarPaths(navbar) {
         homeLink.href = NAVBAR_HOME_URL;
     }
 
-    navbar.querySelectorAll("a[data-href], a[href^='/customer/'], a[href^='/auth/'], a[href^='/admin/']").forEach(link => {
+    navbar.querySelectorAll("a[data-href], a[href^='/customer/'], a[href^='/auth/'], a[href^='/admin/'], a[href^='/coming-soon']").forEach(link => {
         const dataHref = link.getAttribute("data-href");
         const originalHref = dataHref || link.getAttribute("href");
         if (originalHref) {
