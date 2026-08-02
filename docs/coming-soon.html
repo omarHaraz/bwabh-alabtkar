@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قريبًا | Innovation Hub</title>
+
+    <link rel="stylesheet" href="./customer/assets/css/navbar.css">
+    <link rel="stylesheet" href="./customer/assets/css/footer.css">
+    <link rel="stylesheet" href="./customer/assets/css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .coming-soon-page {
+            padding: 40px 20px 80px;
+        }
+
+        .coming-soon-card {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: clamp(32px, 4vw, 56px);
+            border-radius: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+            border: 1px solid #e8edf5;
+            box-shadow: 0 16px 45px rgba(15, 98, 254, 0.08);
+            text-align: center;
+        }
+
+        .coming-soon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(15, 98, 254, 0.1);
+            color: #0F62FE;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .coming-soon-card h1 {
+            font-size: clamp(1.8rem, 3.7vw, 2.8rem);
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .coming-soon-card p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
+
+        .coming-soon-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .coming-soon-actions .hero-btn,
+        .coming-soon-actions .card-btn {
+            margin-top: 0;
+        }
+
+        @media (max-width: 576px) {
+            .coming-soon-card {
+                padding: 28px 20px;
+            }
+
+            .coming-soon-actions {
+                flex-direction: column;
+            }
+
+            .coming-soon-actions a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <main class="coming-soon-page">
+        <div class="container">
+            <section class="coming-soon-card">
+                <div class="coming-soon-badge">
+                    <i class="fa-solid fa-rocket"></i>
+                    قريبًا
+                </div>
+                <h1>هذه الميزة ما زالت قيد التطوير</h1>
+                <p>
+                    نعمل على هذه الميزة حاليًا وسنشاركها معك قريبًا.
+                    meanwhile يمكنك العودة إلى الصفحة الرئيسية أو استعراض الحلول الحالية
+                    التي أصبحت متاحة الآن.
+                </p>
+                <div class="coming-soon-actions">
+                    <a href="./customer/pages/home.html" class="hero-btn">العودة إلى الصفحة الرئيسية</a>
+                    <a href="./customer/pages/solutions/solutions.html" class="card-btn">استعراض الحلول</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script type="module">
+        import { loadNavbar } from './customer/assets/js/components/navbar.js';
+        import { loadFooter } from './customer/assets/js/components/footer.js';
+
+        await loadNavbar();
+        await loadFooter();
+    </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 import axios from "https://cdn.skypack.dev/axios";
 
-const API_URL = "https://bwabh-alabtkar-com.onrender.com/api/auth/";
+const API_URL = "https://dental-flow-daily-brands.trycloudflare.com/api/auth/";
+
 
 class AuthService {
 

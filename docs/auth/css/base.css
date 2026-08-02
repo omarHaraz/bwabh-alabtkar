@@ -106,6 +106,7 @@ html{
 body{
 
     min-height:100vh;
+    padding-top:84px;
 
     background:var(--background);
 
@@ -235,6 +236,43 @@ ol{
 /*=====================================
             UTILITIES
 =====================================*/
+
+.auth-topbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 24px;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 8px 30px rgba(15,23,42,.06);
+    backdrop-filter:blur(10px);
+}
+
+.auth-topbar-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    color:var(--secondary);
+}
+
+.auth-topbar-brand i{
+    color:var(--primary);
+}
+
+.auth-topbar-link{
+    color:var(--primary);
+    font-weight:600;
+}
+
+.auth-topbar-link:hover{
+    color:var(--primary-dark);
+}
 
 .hidden{
 

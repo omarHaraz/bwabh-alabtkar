@@ -202,25 +202,25 @@ function initNavbarEvents() {
             MOBILE DROPDOWNS
     ========================== */
 
+    const isMobileViewport = () => window.innerWidth <= 992;
+
     document
-        .querySelectorAll(".mobile-dropdown > a")
-        .forEach(link => {
+        .querySelectorAll(".mobile-dropdown .dropdown-toggle-btn")
+        .forEach(button => {
 
-            link.addEventListener("click", function (e) {
+            button.addEventListener("click", function (e) {
 
-                if (window.innerWidth > 992)
+                if (!isMobileViewport())
                     return;
 
                 const parent =
-                    this.parentElement;
+                    this.closest(".mobile-dropdown");
 
-                const submenu =
-                    parent.querySelector(".dropdown-menu, .mega-menu");
-
-                if (!submenu)
+                if (!parent)
                     return;
 
                 e.preventDefault();
+                e.stopPropagation();
 
                 parent.classList.toggle("active");
 
@@ -228,6 +228,29 @@ function initNavbarEvents() {
 
         });
 
+    document
+        .querySelectorAll(".mobile-dropdown .dropdown-header .dropdown-toggle")
+        .forEach(link => {
+
+            link.addEventListener("click", function (e) {
+
+                if (!isMobileViewport())
+                    return;
+
+                const parent =
+                    this.closest(".mobile-dropdown");
+
+                if (!parent)
+                    return;
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                parent.classList.toggle("active");
+
+            });
+
+        });
 
     /* =========================
             ACTIVE LINK

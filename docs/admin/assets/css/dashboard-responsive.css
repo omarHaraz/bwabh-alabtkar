@@ -71,6 +71,21 @@ body{
    NAVBAR
 ========================================================== */
 
+#navbarBlur{
+    position:fixed;
+    top:0;
+    left:17rem;
+    right:0;
+    z-index:1200;
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid rgba(0,0,0,.08);
+    backdrop-filter:blur(10px);
+}
+
+.main-content{
+    padding-top:90px;
+}
+
 #navbarBlur .container-fluid{
     flex-wrap:nowrap;
     gap:8px;
@@ -137,6 +152,12 @@ body{
         justify-content:flex-end;
         gap:.5rem;
         margin-top:0;
+    }
+}
+
+@media (max-width:1200px){
+    #navbarBlur{
+        left:0;
     }
 }
 

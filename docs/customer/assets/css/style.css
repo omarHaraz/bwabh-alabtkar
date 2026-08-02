@@ -15,6 +15,9 @@ html{
 
 body{
     overflow-x:hidden;
+
+    /* Height of the fixed navbar */
+    padding-top:84px;
 }
 
 img{
@@ -24,8 +27,8 @@ img{
 
 .container{
     max-width:1200px;
-    margin:auto;
     width:100%;
+    margin:auto;
 }
 
 /* ==========================================
@@ -37,6 +40,8 @@ img{
     position:relative;
 
     width:100%;
+
+    /* Fill the viewport after the body's top padding */
     min-height:100vh;
 
     background:url("../images/hero.jpg") center/cover no-repeat;
@@ -78,7 +83,6 @@ img{
     font-weight:800;
     margin-bottom:20px;
     line-height:1.2;
-    word-wrap:break-word;
 }
 
 .hero-content h2{
@@ -117,8 +121,6 @@ img{
     font-weight:700;
 
     transition:.3s;
-
-    max-width:100%;
 }
 
 .hero-btn:hover{
@@ -129,9 +131,6 @@ img{
 
     box-shadow:0 12px 25px rgba(255,91,46,.35);
 }
-
-
-
 
 /* ==========================================
    INDUSTRY SOLUTIONS
@@ -391,15 +390,24 @@ img{
 
         margin:0 auto 25px;
     }
+
+    .cards > .card:nth-child(3){
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: min(100%, 520px);
+    }
 }
 
 /* Small tablets / large phones: single column */
 @media (max-width:768px){
 
-    .hero{
+    body{
+        padding-top:84px;
+    }
 
-        min-height:90vh;
-        padding:0 20px;
+    .hero{
+        min-height:100vh;
+        padding:40px 20px;
     }
 
     .hero-btn{
@@ -442,9 +450,8 @@ img{
 @media (max-width:480px){
 
     .hero{
-
-        min-height:85vh;
-        padding:0 16px;
+        min-height:100vh;
+        padding:40px 16px;
     }
 
     .hero-content h1{
