@@ -14,6 +14,8 @@ class AuthService {
         const response = await axios.post(API_URL + "login", {
             email,
             password
+        }, {
+            withCredentials: true
         });
 
         if (response.data.token) {
@@ -35,7 +37,8 @@ class AuthService {
 
         const response = await axios.post(
             API_URL + "request-otp",
-            signupData
+            signupData,
+            { withCredentials: true }
         );
 
         return response.data;
@@ -48,7 +51,8 @@ class AuthService {
             {
                 email,
                 code
-            }
+            },
+            { withCredentials: true }
         );
 
         if (response.data.token) {
@@ -64,7 +68,8 @@ class AuthService {
             API_URL + "resend-otp",
             {
                 email
-            }
+            },
+            { withCredentials: true }
         );
 
         return response.data;
@@ -113,7 +118,8 @@ class AuthService {
             const response = await axios.get(
                 API_URL + "me",
                 {
-                    headers: this.getAuthHeader()
+                    headers: this.getAuthHeader(),
+                    withCredentials: true
                 }
             );
 
@@ -134,7 +140,8 @@ class AuthService {
             API_URL + "forgot-password",
             {
                 email
-            }
+            },
+            { withCredentials: true }
         );
     
         return response.data;
@@ -147,7 +154,8 @@ class AuthService {
             {
                 email,
                 code
-            }
+            },
+            { withCredentials: true }
         );
     
         return response.data;
@@ -159,7 +167,8 @@ class AuthService {
             API_URL + "resend-reset-code",
             {
                 email
-            }
+            },
+            { withCredentials: true }
         );
     
         return response.data;
@@ -173,7 +182,8 @@ class AuthService {
                 email,
                 code,
                 password
-            }
+            },
+            { withCredentials: true }
         );
     
         return response.data;
