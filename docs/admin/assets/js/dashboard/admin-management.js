@@ -1,6 +1,6 @@
 // assets/js/dashboard/admin-management.js
 
-const API_BASE_URL = 'http://localhost:8080/api/admin/management';
+const API_BASE_URL = 'https://dental-flow-daily-brands.trycloudflare.com/api/admin/management';
 const user = JSON.parse(localStorage.getItem("user"));
 
 if (!user || !user.token) {

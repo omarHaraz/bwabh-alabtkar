@@ -1,6 +1,6 @@
 // assets/js/dashboard/customer-management.js
 
-const API_BASE_URL = 'http://localhost:8080/api/customer/management';
+const API_BASE_URL = 'https://dental-flow-daily-brands.trycloudflare.com/api/customer/management';
 
 const user = JSON.parse(localStorage.getItem("user"));
 
