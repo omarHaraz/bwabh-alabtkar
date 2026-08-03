@@ -157,59 +157,61 @@
 
             <input type="hidden" id="adminId">
 
-            <div class="input-group input-group-outline my-3">
-              <label class="form-label">Full Name</label>
-              <input
-                type="text"
-                id="adminName"
-                class="form-control"
-                required>
+            <div class="mb-3">
+              <label class="form-label text-xs font-weight-bold text-dark ms-1 mb-1">Full Name</label>
+              <div class="input-group input-group-outline">
+                <input
+                  type="text"
+                  id="adminName"
+                  class="form-control px-3"
+                  placeholder="e.g. John Doe"
+                  required>
+              </div>
             </div>
 
-            <div class="input-group input-group-outline my-3" id="emailGroup">
-              <label class="form-label">Email Address</label>
-              <input
-                type="email"
-                id="adminEmail"
-                class="form-control"
-                required>
+            <div class="mb-3" id="emailGroup">
+              <label class="form-label text-xs font-weight-bold text-dark ms-1 mb-1">Email Address</label>
+              <div class="input-group input-group-outline">
+                <input
+                  type="email"
+                  id="adminEmail"
+                  class="form-control px-3"
+                  placeholder="name@bwabhalabtkar.com"
+                  required>
+              </div>
             </div>
 
-            <div class="input-group input-group-outline my-3" id="passwordGroup">
-              <label class="form-label">Password</label>
-              <input
-                type="password"
-                id="adminPassword"
-                class="form-control">
-
+            <div class="mb-3" id="passwordGroup">
+              <label class="form-label text-xs font-weight-bold text-dark ms-1 mb-1">Password</label>
+              <div class="input-group input-group-outline">
+                <input
+                  type="password"
+                  id="adminPassword"
+                  class="form-control px-3"
+                  placeholder="••••••••">
+              </div>
               <small
                 id="passwordHelp"
-                class="text-muted d-none">
+                class="text-muted text-xs ms-1 mt-1 d-none">
                 Leave blank to keep the current password.
               </small>
             </div>
 
             <div class="mb-3">
-
-              <label class="form-label">
+              <label class="form-label text-xs font-weight-bold text-dark ms-1 mb-1">
                 Role
               </label>
-
               <select
                 id="adminRoles"
-                class="form-select"
+                class="form-select px-3"
                 required>
-
                 <option value="ROLE_ADMIN">
                   Standard Admin
                 </option>
-
                 <option value="ROLE_SUPER_ADMIN">
                   Super Admin
                 </option>
-
               </select>
-
             </div>
 
             <div class="text-end">

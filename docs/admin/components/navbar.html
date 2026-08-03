@@ -54,11 +54,34 @@
 
         </li>
 
-        <li class="nav-item d-flex align-items-center">
-          <a href="#"
-             class="nav-link text-body font-weight-bold px-0">
-            <i class="material-symbols-rounded">account_circle</i>
+        <li class="nav-item dropdown d-flex align-items-center">
+          <a href="javascript:;"
+             class="nav-link text-body p-0 d-flex align-items-center"
+             id="userDropdownButton"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            <i class="material-symbols-rounded text-lg">account_circle</i>
           </a>
+
+          <ul class="dropdown-menu dropdown-menu-end px-3 py-3 me-sm-n4 shadow-lg border-0"
+              aria-labelledby="userDropdownButton"
+              style="min-width: 210px;">
+            <li class="px-2 py-1">
+              <div class="d-flex flex-column">
+                <h6 class="text-sm font-weight-bold mb-0 text-dark" id="nav-user-name">Super Admin</h6>
+                <span class="text-xs text-secondary mt-1" id="nav-user-email">admin@bwabhalabtkar.com</span>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider my-2"></li>
+            <li>
+              <a class="dropdown-item border-radius-md text-danger font-weight-bold d-flex align-items-center gap-2 py-2"
+                 href="javascript:;"
+                 id="nav-logout-btn">
+                <i class="material-symbols-rounded text-sm text-danger">logout</i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
         </li>
 
       </ul>
