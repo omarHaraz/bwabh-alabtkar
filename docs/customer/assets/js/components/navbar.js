@@ -16,6 +16,17 @@ export async function loadNavbar() {
     fixNavbarPaths(navbar);
     await renderAuthSection();
     initNavbarEvents();
+    updateNavbarHeight();
+}
+
+function updateNavbarHeight() {
+    const navbarElement = document.querySelector("#navbar .navbar") || document.querySelector(".navbar");
+    if (navbarElement) {
+        const height = navbarElement.getBoundingClientRect().height;
+        if (height > 0) {
+            document.documentElement.style.setProperty("--nav-height", `${height}px`);
+        }
+    }
 }
 
 function getRepoPrefix() {
@@ -41,6 +52,11 @@ function fixNavbarPaths(navbar) {
     const logo = navbar.querySelector(".logo-icon");
     if (logo) {
         logo.src = LOGO_ICON_URL;
+        if (logo.complete) {
+            updateNavbarHeight();
+        } else {
+            logo.addEventListener("load", updateNavbarHeight);
+        }
     }
 
     const homeLink = navbar.querySelector(".logo-container");
@@ -166,6 +182,8 @@ function initNavbarEvents() {
             }
         }
     });
+
+    window.addEventListener("resize", updateNavbarHeight);
 }
 
 /* =========================

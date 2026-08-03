@@ -17,7 +17,7 @@ body{
     overflow-x:hidden;
 
     /* Height of the fixed navbar */
-    padding-top:84px;
+    padding-top:var(--nav-height,77px);
 }
 
 img{
@@ -42,7 +42,7 @@ img{
     width:100%;
 
     /* Fill the viewport after the body's top padding */
-    min-height:100vh;
+    min-height:calc(100vh - var(--nav-height, 77px));
 
     background:url("../images/hero.jpg") center/cover no-repeat;
 
@@ -402,11 +402,11 @@ img{
 @media (max-width:768px){
 
     body{
-        padding-top:84px;
+        padding-top:var(--nav-height,77px);
     }
 
     .hero{
-        min-height:100vh;
+        min-height:calc(100vh - var(--nav-height, 77px));
         padding:40px 20px;
     }
 
@@ -450,7 +450,7 @@ img{
 @media (max-width:480px){
 
     .hero{
-        min-height:100vh;
+        min-height:calc(100vh - var(--nav-height, 77px));
         padding:40px 16px;
     }
 
