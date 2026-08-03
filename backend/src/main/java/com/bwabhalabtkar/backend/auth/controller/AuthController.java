@@ -91,7 +91,7 @@ public class AuthController {
 
             emailService.sendHtmlEmail(
                     request.getEmail(),
-                    "Your StyleSphere Verification Code",
+                    "Your Bwabh Alabtkar Verification Code",
                     code
             );
 
@@ -190,7 +190,7 @@ public class AuthController {
 
             emailService.sendHtmlEmail(
                     signup.getEmail(),
-                    "Your StyleSphere Verification Code",
+                    "Your Bwabh Alabtkar Verification Code",
                     newOtp
             );
 
@@ -259,7 +259,7 @@ public class AuthController {
 
             emailService.sendHtmlEmail(
                     request.getEmail(),
-                    "Your StyleSphere Password Reset Code",
+                    "Your Bwabh Alabtkar Password Reset Code",
                     code
             );
 
@@ -348,7 +348,7 @@ public class AuthController {
 
             emailService.sendHtmlEmail(
                     reset.getEmail(),
-                    "Your StyleSphere Password Reset Code",
+                    "Your Bwabh Alabtkar Password Reset Code",
                     newOtp
             );
 

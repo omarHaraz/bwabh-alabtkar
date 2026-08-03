@@ -65,7 +65,7 @@ public class EmailServiceResend {
         CreateEmailOptions request = CreateEmailOptions.builder()
                 .from("bwabhalabtkar <onboarding@resend.dev>")
                 .to(to)
-                .subject("Welcome to StyleSphere 🎉")
+                .subject("Welcome to Bwabh Alabtkar 🎉")
                 .html(html)
                 .build();
 
