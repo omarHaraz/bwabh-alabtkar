@@ -43,17 +43,25 @@ ul{
 }
 
 .navbar{
+
     position:relative;
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(14px);
+    background:transparent;
+
     width:100%;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:14px 48px;
-    border-bottom:1px solid rgba(226,232,240,.8);
-    box-shadow:0 4px 20px rgba(15,23,42,.04);
+
+    background:#fff;
+
+    border-bottom:1px solid #ececec;
+
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+
 }
 
 /* =====================================================
