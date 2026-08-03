@@ -75,8 +75,17 @@ if (roles.includes("ROLE_ADMIN") || roles.includes("ROLE_SUPER_ADMIN")) {
 }
     } catch (error) {
         formError.hidden = false;
-        formError.textContent = 'Login failed. Please check your credentials.';
-        setFieldError(passwordError, '');
+        const resData = error.response?.data;
+        if (resData && typeof resData === 'object' && resData.fieldErrors) {
+            const fe = resData.fieldErrors;
+            if (fe.email) setFieldError(emailError, fe.email);
+            if (fe.password) setFieldError(passwordError, fe.password);
+            formError.textContent = resData.message || 'Please correct the errors above.';
+        } else if (resData && typeof resData === 'object' && resData.message) {
+            formError.textContent = resData.message;
+        } else {
+            formError.textContent = typeof resData === 'string' ? resData : 'Login failed. Please check your credentials.';
+        }
     }
 });
 

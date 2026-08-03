@@ -183,9 +183,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             formError.hidden = false;
 
-            formError.textContent =
-                error.response?.data ||
-                "Failed to send verification code.";
+            const resData = error.response?.data;
+            if (resData && typeof resData === 'object' && resData.fieldErrors) {
+                const fe = resData.fieldErrors;
+                if (fe.name) setFieldError(nameError, fe.name);
+                if (fe.email) setFieldError(emailError, fe.email);
+                if (fe.password) setFieldError(passwordError, fe.password);
+                formError.textContent = resData.message || "Please correct the highlighted errors.";
+            } else if (resData && typeof resData === 'object' && resData.message) {
+                formError.textContent = resData.message;
+            } else {
+                formError.textContent =
+                    typeof resData === 'string'
+                        ? resData
+                        : "Failed to send verification code.";
+            }
 
         }
 

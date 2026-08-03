@@ -65,9 +65,18 @@ form.addEventListener("submit", async (e) => {
 
         formError.hidden = false;
 
-        formError.textContent =
-            error.response?.data ||
-            "Unable to send verification code.";
+        const resData = error.response?.data;
+        if (resData && typeof resData === 'object' && resData.fieldErrors?.email) {
+            setFieldError(emailError, resData.fieldErrors.email);
+            formError.textContent = resData.message || "Please correct the email format.";
+        } else if (resData && typeof resData === 'object' && resData.message) {
+            formError.textContent = resData.message;
+        } else {
+            formError.textContent =
+                typeof resData === 'string'
+                    ? resData
+                    : "Unable to send verification code.";
+        }
 
     }
 

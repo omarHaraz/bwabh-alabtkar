@@ -8,6 +8,7 @@ import com.bwabhalabtkar.backend.auth.security.JwtTokenProvider;
 import com.bwabhalabtkar.backend.auth.service.EmailService;
 import com.bwabhalabtkar.backend.auth.service.OtpService;
 import com.bwabhalabtkar.backend.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class AuthController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -66,7 +67,7 @@ public class AuthController {
     }
 
     @PostMapping("/request-otp")
-    public ResponseEntity<?> requestOtp(@RequestBody SignupRequest request) {
+    public ResponseEntity<?> requestOtp(@Valid @RequestBody SignupRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -107,7 +108,7 @@ public class AuthController {
 
     @PostMapping("/verify-otp")
     public ResponseEntity<?> verifyOtp(
-            @RequestBody OtpVerificationRequest request) {
+            @Valid @RequestBody OtpVerificationRequest request) {
 
         try {
 
@@ -168,7 +169,7 @@ public class AuthController {
     }
 
     @PostMapping("/resend-otp")
-    public ResponseEntity<?> resendOtp(@RequestBody ResendOtpRequest request) {
+    public ResponseEntity<?> resendOtp(@Valid @RequestBody ResendOtpRequest request) {
 
         try {
 
@@ -228,7 +229,7 @@ public class AuthController {
 
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(
-            @RequestBody ForgotPasswordRequest request) {
+            @Valid @RequestBody ForgotPasswordRequest request) {
 
         try {
 
@@ -281,7 +282,7 @@ public class AuthController {
 
     @PostMapping("/verify-reset-code")
     public ResponseEntity<?> verifyResetCode(
-            @RequestBody ResetPasswordVerificationRequest request) {
+            @Valid @RequestBody ResetPasswordVerificationRequest request) {
 
         try {
 
@@ -321,7 +322,7 @@ public class AuthController {
 
     @PostMapping("/resend-reset-code")
     public ResponseEntity<?> resendResetCode(
-            @RequestBody ForgotPasswordRequest request) {
+            @Valid @RequestBody ForgotPasswordRequest request) {
 
         try {
 
@@ -370,7 +371,7 @@ public class AuthController {
 
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(
-            @RequestBody ResetPasswordRequest request) {
+            @Valid @RequestBody ResetPasswordRequest request) {
 
         try {
 

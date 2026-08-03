@@ -4,6 +4,7 @@ package com.bwabhalabtkar.backend.user.controller;
 import com.bwabhalabtkar.backend.user.dto.CustomerResponse;
 import com.bwabhalabtkar.backend.user.dto.CustomerUpdateRequest;
 import com.bwabhalabtkar.backend.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +29,7 @@ public class CustomerManagementController
     @PutMapping("/{id}")
     public ResponseEntity<CustomerResponse> updateCustomer(
             @PathVariable Long id,
-            @RequestBody CustomerUpdateRequest request) {
+            @Valid @RequestBody CustomerUpdateRequest request) {
 
 
 

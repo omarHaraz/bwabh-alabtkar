@@ -141,9 +141,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             formError.hidden = false;
 
-            formError.textContent =
-                error.response?.data ||
-                "Unable to reset password.";
+            const resData = error.response?.data;
+            if (resData && typeof resData === 'object' && resData.fieldErrors) {
+                const fe = resData.fieldErrors;
+                if (fe.password) setFieldError(passwordError, fe.password);
+                formError.textContent = resData.message || "Please correct the password errors.";
+            } else if (resData && typeof resData === 'object' && resData.message) {
+                formError.textContent = resData.message;
+            } else {
+                formError.textContent =
+                    typeof resData === 'string'
+                        ? resData
+                        : "Unable to reset password.";
+            }
 
         }
 

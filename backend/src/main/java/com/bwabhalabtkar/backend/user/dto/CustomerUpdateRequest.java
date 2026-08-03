@@ -1,9 +1,17 @@
 package com.bwabhalabtkar.backend.user.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+
 public class CustomerUpdateRequest {
 
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
+
+    @Email(message = "Invalid email format")
     private String email;
+
+    @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
 
     public String getName() {

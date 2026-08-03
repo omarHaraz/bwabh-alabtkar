@@ -4,6 +4,7 @@ package com.bwabhalabtkar.backend.user.controller;
 import com.bwabhalabtkar.backend.user.dto.AdminCreateRequest;
 import com.bwabhalabtkar.backend.user.dto.AdminResponse;
 import com.bwabhalabtkar.backend.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class AdminManagementController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addAdmin(@RequestBody AdminCreateRequest request)
+    public ResponseEntity<?> addAdmin(@Valid @RequestBody AdminCreateRequest request)
     {
         try {
             AdminResponse response = userService.createAdminUser(request);
@@ -40,7 +41,7 @@ public class AdminManagementController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAdmin(@PathVariable int id, @RequestBody AdminCreateRequest request) {
+    public ResponseEntity<?> updateAdmin(@PathVariable int id, @Valid @RequestBody AdminCreateRequest request) {
         try {
             AdminResponse response = userService.updateAdminUser(id, request);
             return ResponseEntity.ok(response);
