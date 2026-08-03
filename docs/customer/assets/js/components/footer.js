@@ -1,5 +1,5 @@
 const FOOTER_HTML_URL = new URL("../../../components/footer.html", import.meta.url);
-const LOGO_ICON_URL = new URL("../../images/logo-icon.png", import.meta.url).href;
+const LOGO_ICON_URL = new URL("../../images/logo-icon.webp", import.meta.url).href;
 
 export async function loadFooter() {
 

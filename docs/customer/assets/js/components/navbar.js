@@ -2,7 +2,7 @@ import AuthService from "../../../../auth/services/AuthService.js";
 
 const NAVBAR_HTML_URL = new URL("../../../components/navbar.html", import.meta.url);
 const NAVBAR_HOME_URL = new URL("../../../pages/home.html", import.meta.url).href;
-const LOGO_ICON_URL = new URL("../../images/logo-icon.png", import.meta.url).href;
+const LOGO_ICON_URL = new URL("../../images/logo-icon.webp", import.meta.url).href;
 const AUTH_BASE_PATH = new URL("../../../../auth/", import.meta.url).pathname;
 
 export async function loadNavbar() {

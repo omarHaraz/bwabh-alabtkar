@@ -44,7 +44,7 @@ img{
     /* Fill the viewport after the body's top padding */
     min-height:calc(100vh - var(--nav-height, 77px));
 
-    background:url("../images/hero.jpg") center/cover no-repeat;
+    background:url("../images/hero.webp") center/cover no-repeat;
 
     display:flex;
     justify-content:center;
