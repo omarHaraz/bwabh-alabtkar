@@ -1,7 +1,6 @@
 import axios from "https://cdn.skypack.dev/axios";
 
-const API_URL = "https://dental-flow-daily-brands.trycloudflare.com/api/auth/";
-
+const API_URL = "https://retrieved-ebony-diameter-exercises.trycloudflare.com/api/auth/";
 
 class AuthService {
 

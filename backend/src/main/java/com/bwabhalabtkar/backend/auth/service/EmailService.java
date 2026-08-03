@@ -56,7 +56,7 @@ public class EmailService {
 
         helper.setFrom(FROM);
         helper.setTo(to);
-        helper.setSubject("Welcome to StyleSphere 🎉");
+        helper.setSubject("Welcome to Bwabh Alabtkar 🎉");
         helper.setText(htmlContent, true);
 
         mailSender.send(message);

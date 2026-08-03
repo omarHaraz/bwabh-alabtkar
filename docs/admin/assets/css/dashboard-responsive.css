@@ -113,8 +113,13 @@ body{
 
 @media (max-width:991.98px){
 
-    /* Let Material Dashboard control the collapse */
-    body.g-sidenav-show .navbar-main .navbar-collapse{
+    /* Always show the navbar icons on mobile/tablet, regardless of
+       whether the off-canvas sidenav drawer is open or closed.
+       (Previously gated behind body.g-sidenav-show, which is the
+       SAME class dashboard-responsive.js toggles to open/close the
+       mobile drawer — so icons only appeared while the drawer was
+       open. Those are two unrelated states and shouldn't share a class.) */
+    .navbar-main .navbar-collapse{
         display:flex !important;
         flex-basis:auto;
         flex-grow:1;
@@ -190,4 +195,65 @@ body{
 
 #navbarBlur .dropdown-menu{
     max-width:92vw;
+}
+
+/* ==========================================================
+   FIX: navbar icons clipped off-screen on very narrow widths
+   Flex children don't shrink below their content size by default,
+   so the breadcrumb pushes the icon group past the viewport edge
+   and (since body has overflow-x:hidden) it's invisibly clipped.
+========================================================== */
+
+#navbarBlur .container-fluid{
+    min-width:0;
+}
+
+#navbarBlur .breadcrumb{
+    min-width:0;
+    flex-shrink:1;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+#navbarBlur .breadcrumb-item{
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#navbarContent,
+#navbarContent .navbar-nav{
+    flex-shrink:0;
+}
+
+@media (max-width:400px){
+    #navbarBlur .container-fluid{
+        gap:4px;
+        padding-left:8px;
+        padding-right:8px;
+        flex-wrap:wrap !important;
+        row-gap:4px;
+    }
+
+    #navbarContent{
+        flex-basis:100%;
+        justify-content:flex-end !important;
+    }
+
+    #navbarContent .navbar-nav{
+        gap:.25rem;
+        flex-wrap:wrap !important;
+        width:100%;
+        row-gap:4px;
+    }
+
+    #navbarBlur .nav-item.px-3{
+        padding-left:.25rem !important;
+        padding-right:.25rem !important;
+    }
+
+    #navbarBlur .breadcrumb{
+        max-width:none;
+        flex:1 1 auto;
+    }
 }

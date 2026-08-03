@@ -1,6 +1,8 @@
 // assets/js/dashboard/admin-management.js
 
-const API_BASE_URL = 'https://dental-flow-daily-brands.trycloudflare.com/api/admin/management';
+
+const API_BASE_URL = "https://bwabh-alabtkar-com.onrender.com/api/admin/management";
+
 const user = JSON.parse(localStorage.getItem("user"));
 
 if (!user || !user.token) {

@@ -2,248 +2,165 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <title>Innovation Hub | Verify Your Account</title>
-
+    <title>Bwabh Alabtkar | Verify Your Account</title>
 </head>
 
 <body style="margin:0;padding:40px 0;background:#f8f9fc;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
 
-<table role="presentation"
-       width="100%"
-       cellpadding="0"
-       cellspacing="0"
-       style="border-collapse:collapse;">
-
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
     <tr>
-
         <td align="center">
 
-            <table
-                    role="presentation"
-                    width="620"
-                    cellpadding="0"
-                    cellspacing="0"
-                    style="background:#ffffff;
-                       border-radius:18px;
-                       overflow:hidden;
-                       box-shadow:0 15px 40px rgba(0,0,0,.08);">
+            <table role="presentation"
+                   width="620"
+                   cellpadding="0"
+                   cellspacing="0"
+                   style="background:#ffffff;
+                          border-radius:18px;
+                          overflow:hidden;
+                          box-shadow:0 15px 40px rgba(0,0,0,.08);">
 
                 <!-- Header -->
-
                 <tr>
+                    <td align="center" style="padding:45px 40px 30px;">
 
-                    <td align="center"
-                        style="padding:45px 40px 30px;">
-
-                        <h1 style="
-                            margin:0;
-                            font-size:36px;
-                            font-weight:700;
-                            color:#3E4CC9;">
-
-                            Innovation Hub
-
+                        <h1 style="margin:0;
+                                   font-size:36px;
+                                   font-weight:700;
+                                   color:#3E4CC9;">
+                            Bwabh Alabtkar
                         </h1>
 
-                        <p style="
-                            margin:12px 0 0;
-                            color:#ff5a2f;
-                            font-size:15px;
-                            font-weight:600;
-                            letter-spacing:2px;
-                            text-transform:uppercase;">
-
+                        <p style="margin:12px 0 0;
+                                  color:#ff5a2f;
+                                  font-size:15px;
+                                  font-weight:600;
+                                  letter-spacing:2px;
+                                  text-transform:uppercase;">
                             Secure Account Verification
-
                         </p>
 
                     </td>
-
                 </tr>
 
-                <!-- Orange Divider -->
-
+                <!-- Divider -->
                 <tr>
-
                     <td style="height:5px;background:#ff5a2f;"></td>
-
                 </tr>
 
                 <!-- Content -->
-
                 <tr>
-
                     <td style="padding:50px 45px;">
 
-                        <h2 style="
-                            margin:0 0 20px;
-                            font-size:30px;
-                            color:#1f2937;
-                            font-weight:700;">
-
+                        <h2 style="margin:0 0 20px;
+                                   font-size:30px;
+                                   color:#1f2937;
+                                   font-weight:700;">
                             Verify Your Email
-
                         </h2>
 
-                        <p style="
-                            margin:0 0 18px;
-                            color:#6b7280;
-                            font-size:16px;
-                            line-height:1.8;">
-
+                        <p style="margin:0 0 18px;
+                                  color:#6b7280;
+                                  font-size:16px;
+                                  line-height:1.8;">
                             Hello,
-
                         </p>
 
-                        <p style="
-                            margin:0;
-                            color:#6b7280;
-                            font-size:16px;
-                            line-height:1.9;">
-
-                            Welcome to <strong style="color:#1f2937;">Innovation Hub</strong>.
-
-                            To complete your account verification,
-                            please enter the one-time verification code below.
-
+                        <p style="margin:0;
+                                  color:#6b7280;
+                                  font-size:16px;
+                                  line-height:1.9;">
+                            Welcome to <strong style="color:#1f2937;">Bwabh Alabtkar</strong>.
+                            To complete your account verification, please enter the one-time verification code below.
                         </p>
 
-                        <!-- OTP Card -->
-
-                        <table
-                                role="presentation"
-                                align="center"
-                                cellpadding="0"
-                                cellspacing="0"
-                                style="margin:45px auto;">
+                        <!-- OTP -->
+                        <table role="presentation"
+                               align="center"
+                               cellpadding="0"
+                               cellspacing="0"
+                               style="margin:45px auto;">
 
                             <tr>
+                                <td align="center"
+                                    style="background:#fff5f1;
+                                           border:2px dashed #ff5a2f;
+                                           border-radius:16px;
+                                           padding:22px 42px;">
 
-                                <td
-                                        align="center"
-                                        style="
-                                        background:#fff5f1;
-                                        border:2px dashed #ff5a2f;
-                                        border-radius:16px;
-                                        padding:22px 42px;">
-
-                                    <span
-                                            th:text="${otpCode}"
-                                            style="
-                                            color:#ff5a2f;
-                                            font-size:40px;
-                                            font-weight:700;
-                                            letter-spacing:12px;">
-
+                                    <span th:text="${otpCode}"
+                                          style="color:#ff5a2f;
+                                                 font-size:40px;
+                                                 font-weight:700;
+                                                 letter-spacing:12px;">
                                         000000
-
                                     </span>
 
                                 </td>
-
                             </tr>
 
                         </table>
 
-                        <p style="
-                            margin:0;
-                            color:#6b7280;
-                            font-size:15px;
-                            line-height:1.8;">
-
+                        <p style="margin:0;
+                                  color:#6b7280;
+                                  font-size:15px;
+                                  line-height:1.8;">
                             This verification code is valid for
-
-                            <strong style="color:#1f2937;">
-
-                                5 minutes.
-
-                            </strong>
-
+                            <strong style="color:#1f2937;">5 minutes.</strong>
                         </p>
 
-                        <p style="
-                            margin:25px 0 0;
-                            color:#6b7280;
-                            font-size:15px;
-                            line-height:1.8;">
-
-                            If you didn't request this verification,
-                            you can safely ignore this email.
+                        <p style="margin:25px 0 0;
+                                  color:#6b7280;
+                                  font-size:15px;
+                                  line-height:1.8;">
+                            If you didn't request this verification, you can safely ignore this email.
                             No changes will be made to your account.
-
                         </p>
 
                     </td>
-
                 </tr>
 
                 <!-- Divider -->
-
                 <tr>
-
                     <td style="padding:0 45px;">
-
-                        <hr style="
-                            border:none;
-                            border-top:1px solid #ececec;
-                            margin:0;">
-
+                        <hr style="border:none;border-top:1px solid #ececec;margin:0;">
                     </td>
-
                 </tr>
 
                 <!-- Footer -->
-
                 <tr>
+                    <td align="center" style="padding:35px 40px;">
 
-                    <td align="center"
-                        style="padding:35px 40px;">
-
-                        <p style="
-                            margin:0;
-                            color:#3E4CC9;
-                            font-size:18px;
-                            font-weight:700;">
-
-                            Innovation Hub
-
+                        <p style="margin:0;
+                                  color:#3E4CC9;
+                                  font-size:18px;
+                                  font-weight:700;">
+                            Bwabh Alabtkar
                         </p>
 
-                        <p style="
-                            margin:12px 0 0;
-                            color:#6b7280;
-                            font-size:14px;
-                            line-height:1.8;">
-
-                            Empowering organizations through innovation,
-                            collaboration, and digital transformation.
-
+                        <p style="margin:12px 0 0;
+                                  color:#6b7280;
+                                  font-size:14px;
+                                  line-height:1.8;">
+                            Connecting innovators, entrepreneurs, researchers,
+                            and organizations through a unified digital innovation platform.
                         </p>
 
-                        <p style="
-                            margin:24px 0 0;
-                            color:#9ca3af;
-                            font-size:12px;">
-
-                            © 2026 Innovation Hub. All rights reserved.
-
+                        <p style="margin:24px 0 0;
+                                  color:#9ca3af;
+                                  font-size:12px;">
+                            © 2026 Bwabh Alabtkar. All rights reserved.
                         </p>
 
                     </td>
-
                 </tr>
 
             </table>
 
         </td>
-
     </tr>
-
 </table>
 
 </body>
-
 </html>
