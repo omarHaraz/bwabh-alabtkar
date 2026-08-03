@@ -1,7 +1,8 @@
 // assets/js/dashboard/admin-management.js
 
+import { API_BASE } from "../../../../assets/js/api-config.js";
 
-const API_BASE_URL = "https://bwabh-alabtkar-com.onrender.com/api/admin/management";
+const API_BASE_URL = `${API_BASE}/api/admin/management`;
 
 const user = JSON.parse(localStorage.getItem("user"));
 

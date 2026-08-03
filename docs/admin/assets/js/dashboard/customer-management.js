@@ -1,7 +1,9 @@
 // assets/js/dashboard/customer-management.js
 
+import { API_BASE } from "../../../../assets/js/api-config.js";
 
-const API_BASE_URL = "https://bwabh-alabtkar-com.onrender.com/api/customer/management";
+const API_BASE_URL = `${API_BASE}/api/customer/management`;
+
 const user = JSON.parse(localStorage.getItem("user"));
 
 if (!user || !user.token) {

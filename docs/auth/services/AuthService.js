@@ -1,6 +1,7 @@
 import axios from "https://cdn.skypack.dev/axios";
+import { API_BASE } from "../../assets/js/api-config.js";
 
-const API_URL = "https://retrieved-ebony-diameter-exercises.trycloudflare.com/api/auth/";
+const API_URL = `${API_BASE}/api/auth/`;
 
 class AuthService {
 
