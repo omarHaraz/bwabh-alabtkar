@@ -240,3 +240,9 @@ async function reactivateCustomer(id) {
 
     }
 }
+
+Object.assign(window, {
+    openEditModal,
+    deactivateCustomer,
+    reactivateCustomer
+});

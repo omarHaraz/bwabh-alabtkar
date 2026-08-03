@@ -238,3 +238,10 @@ async function reactivateAdmin(id) {
 
 }
 
+Object.assign(window, {
+    openCreateModal,
+    openEditModal,
+    deactivateAdmin,
+    reactivateAdmin
+});
+
