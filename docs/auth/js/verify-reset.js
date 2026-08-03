@@ -48,22 +48,42 @@ document.addEventListener("DOMContentLoaded", () => {
     otpInputs.forEach((input, index) => {
 
         input.addEventListener("input", () => {
-
-            input.value = input.value.replace(/\D/g, "");
-
-            if (
-                input.value &&
-                index < otpInputs.length - 1
-            ) {
-                otpInputs[index + 1].focus();
+            const cleaned = input.value.replace(/\D/g, "");
+            if (cleaned.length > 1) {
+                const digits = cleaned.split("");
+                digits.forEach((digit, i) => {
+                    if (otpInputs[i]) {
+                        otpInputs[i].value = digit;
+                    }
+                });
+                const focusIdx = Math.min(digits.length, otpInputs.length - 1);
+                otpInputs[focusIdx].focus();
+            } else {
+                input.value = cleaned;
+                if (input.value && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
             }
-
             clearError();
+        });
 
+        input.addEventListener("paste", (e) => {
+            e.preventDefault();
+            const pasteData = (e.clipboardData || window.clipboardData).getData("text");
+            const digits = pasteData.replace(/\D/g, "").split("");
+            if (digits.length > 0) {
+                digits.forEach((digit, i) => {
+                    if (otpInputs[i]) {
+                        otpInputs[i].value = digit;
+                    }
+                });
+                const focusIdx = Math.min(digits.length, otpInputs.length - 1);
+                otpInputs[focusIdx].focus();
+                clearError();
+            }
         });
 
         input.addEventListener("keydown", (e) => {
-
             if (
                 e.key === "Backspace" &&
                 input.value === "" &&
@@ -71,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
                 otpInputs[index - 1].focus();
             }
-
         });
 
     });

@@ -132,16 +132,42 @@ document.addEventListener("DOMContentLoaded", () => {
     otpInputs.forEach((input, index) => {
 
         input.addEventListener("input", () => {
+            const cleaned = input.value.replace(/\D/g, "");
+            if (cleaned.length > 1) {
+                const digits = cleaned.split("");
+                digits.forEach((digit, i) => {
+                    if (otpInputs[i]) {
+                        otpInputs[i].value = digit;
+                    }
+                });
+                const focusIdx = Math.min(digits.length, otpInputs.length - 1);
+                otpInputs[focusIdx].focus();
+            } else {
+                input.value = cleaned;
+                if (input.value && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+            }
+            setFieldError(otpError, "");
+        });
 
-            input.value = input.value.replace(/\D/g, "");
-
-            if (input.value.length === 1 && index < otpInputs.length - 1) {
-                otpInputs[index + 1].focus();
+        input.addEventListener("paste", (e) => {
+            e.preventDefault();
+            const pasteData = (e.clipboardData || window.clipboardData).getData("text");
+            const digits = pasteData.replace(/\D/g, "").split("");
+            if (digits.length > 0) {
+                digits.forEach((digit, i) => {
+                    if (otpInputs[i]) {
+                        otpInputs[i].value = digit;
+                    }
+                });
+                const focusIdx = Math.min(digits.length, otpInputs.length - 1);
+                otpInputs[focusIdx].focus();
+                setFieldError(otpError, "");
             }
         });
 
         input.addEventListener("keydown", (e) => {
-
             if (
                 e.key === "Backspace" &&
                 input.value === "" &&
