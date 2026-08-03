@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-public class CustomUserDetailsService  implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,7 +25,6 @@ public class CustomUserDetailsService  implements UserDetailsService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
-
         Collection<GrantedAuthority> authorities =
                 user.getRoles()
                         .stream()
@@ -35,6 +34,10 @@ public class CustomUserDetailsService  implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
+                user.isEnabled(),   // enabled
+                true,               // accountNonExpired
+                true,               // credentialsNonExpired
+                true,               // accountNonLocked
                 authorities
         );
     }
