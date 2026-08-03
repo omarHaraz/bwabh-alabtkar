@@ -1,6 +1,5 @@
-// assets/js/dashboard/customer-management.js
-
 import { API_BASE } from "../../../../assets/js/api-config.js";
+import { AdminUI } from "../admin-ui.js";
 
 const API_BASE_URL = `${API_BASE}/api/customer/management`;
 
@@ -54,21 +53,17 @@ async function loadCustomers() {
 
             const row = `
              <tr>                      
-
                  <td>
                      <div class="d-flex px-3 py-1 align-items-center">
                          <h6 class="mb-0 text-sm">${customer.name}</h6>
                      </div>
                  </td>                      
-
                  <td>
                      <p class="text-sm font-weight-bold mb-0">${customer.email}</p>
                  </td>                      
-
                  <td class="align-middle text-center">
                      ${statusBadge}
                  </td>                      
-
                  <td class="align-middle text-center">
                      <a class="btn btn-link text-dark px-2 mb-0"
                         href="javascript:;"
@@ -76,7 +71,6 @@ async function loadCustomers() {
                          <i class="material-symbols-rounded text-sm">edit</i>
                          Edit
                      </a>                      
-
                 ${customer.enabled ? `
                 <a class="btn btn-link text-danger px-2 mb-0"
                    href="javascript:;"
@@ -93,7 +87,6 @@ async function loadCustomers() {
                 </a>
                 `}
                  </td>                      
-
              </tr>
              `;
 
@@ -102,7 +95,7 @@ async function loadCustomers() {
 
     } catch (error) {
         console.error(error);
-        alert("Could not load customer list.");
+        AdminUI.showToast("Could not load customer list.", "danger");
     }
 }
 
@@ -112,6 +105,9 @@ function openEditModal(id) {
     const customer = activeCustomersList.find(c => c.id === id);
 
     if (!customer) return;
+
+    const form = document.getElementById('customerForm');
+    AdminUI.clearFormErrors(form);
 
     document.getElementById('customerId').value = customer.id;
     document.getElementById('customerName').value = customer.name;
@@ -137,6 +133,8 @@ function openEditModal(id) {
 async function saveCustomerForm(e) {
 
     e.preventDefault();
+    const form = document.getElementById('customerForm');
+    AdminUI.clearFormErrors(form);
 
     const id = document.getElementById('customerId').value;
 
@@ -156,30 +154,46 @@ async function saveCustomerForm(e) {
 
         if (response.ok) {
 
-            alert("Customer updated successfully.");
+            AdminUI.showToast("Customer updated successfully.", "success");
 
             bootstrapModalInstance.hide();
 
             loadCustomers();
 
         } else {
-
-            const message = await response.text();
-
-            alert(message);
+            let errorText = "Failed to update customer.";
+            try {
+                const resData = await response.json();
+                if (resData && resData.fieldErrors) {
+                    AdminUI.showFormErrors(form, resData.fieldErrors);
+                    errorText = resData.message || "Please fix form errors.";
+                } else if (resData && resData.message) {
+                    errorText = resData.message;
+                }
+            } catch (_) {
+                errorText = await response.text();
+            }
+            AdminUI.showToast(errorText, "danger");
         }
 
     } catch (error) {
         console.error(error);
+        AdminUI.showToast("Network error updating customer.", "danger");
     }
 }
 
 // Deactivate Customer
 async function deactivateCustomer(id) {
 
-    if (!confirm("Are you sure you want to deactivate this customer?")) {
-        return;
-    }
+    const confirmed = await AdminUI.showConfirm({
+        title: 'Deactivate Customer',
+        message: 'Are you sure you want to deactivate this customer account?',
+        confirmText: 'Deactivate',
+        confirmClass: 'bg-gradient-danger',
+        icon: 'person_off'
+    });
+
+    if (!confirmed) return;
 
     try {
 
@@ -190,30 +204,36 @@ async function deactivateCustomer(id) {
 
         if (response.ok || response.status === 204) {
 
-            alert("Customer deactivated successfully.");
+            AdminUI.showToast("Customer deactivated successfully.", "success");
 
             loadCustomers();
 
         } else {
 
-            alert("Failed to deactivate customer.");
+            AdminUI.showToast("Failed to deactivate customer.", "danger");
 
         }
 
     } catch (error) {
 
         console.error(error);
+        AdminUI.showToast("Network error deactivating customer.", "danger");
 
     }
 }
 
-
 // Reactivate Customer
 async function reactivateCustomer(id) {
 
-    if (!confirm("Are you sure you want to reactivate this customer?")) {
-        return;
-    }
+    const confirmed = await AdminUI.showConfirm({
+        title: 'Reactivate Customer',
+        message: 'Are you sure you want to reactivate this customer account?',
+        confirmText: 'Reactivate',
+        confirmClass: 'bg-gradient-success',
+        icon: 'restore'
+    });
+
+    if (!confirmed) return;
 
     try {
 
@@ -224,19 +244,20 @@ async function reactivateCustomer(id) {
 
         if (response.ok || response.status === 204) {
 
-            alert("Customer reactivated successfully.");
+            AdminUI.showToast("Customer reactivated successfully.", "success");
 
             loadCustomers();
 
         } else {
 
-            alert("Failed to reactivate customer.");
+            AdminUI.showToast("Failed to reactivate customer.", "danger");
 
         }
 
     } catch (error) {
 
         console.error(error);
+        AdminUI.showToast("Network error reactivating customer.", "danger");
 
     }
 }
@@ -245,4 +266,4 @@ Object.assign(window, {
     openEditModal,
     deactivateCustomer,
     reactivateCustomer
-});
+});
