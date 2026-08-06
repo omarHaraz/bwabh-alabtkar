@@ -1,9 +1,9 @@
 package com.bwabhalabtkar.backend;
 
-import com.bwabhalabtkar.backend.auth.service.EmailService;
-import com.bwabhalabtkar.backend.user.model.User;
-import com.bwabhalabtkar.backend.user.repository.UserRepository;
-import com.bwabhalabtkar.backend.user.repository.UserRepository;
+import com.bwabhalabtkar.backend.features.user.entity.User;
+import com.bwabhalabtkar.backend.features.user.repository.UserRepository;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
